@@ -3,9 +3,9 @@ import Title from "./Title";
 
 const Intro = () => {
     return (
-        <div>
+        <div name="about" className='pt-20'>
             <Title title = "About Me"></Title>
-            <section className="px-4 pb-4 md:px-16 lg:px-8 lg:pb-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-10 pt-10" name="about">
+            <section className="px-4 pb-4 md:px-16 lg:px-8 lg:pb-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-10 pt-10" >
             <div className="pb-8">
                
                 <p className="text-2xl mt-5 text-sky-100 leading-relaxed opacity-80 w-[95%] sm:w-full text-center">Passionate MERN developer, dedicated to creating impactful solutions.</p>

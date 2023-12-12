@@ -23,10 +23,10 @@ const Skills = () => {
         { id: 17, icon: "logos:mysql", width: "80", name: "MySql" },
     ]
     return (
-        <div>
-            <Title title="Skills"></Title>
+        <div name="skills" className='pt-20'>
+            <Title title="Skills" ></Title>
 
-            <div className="px-4 pb-4 md:px-16 lg:px-8 lg:pb-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-10 pt-10" name="skills">
+            <div className="px-4 pb-4 md:px-16 lg:px-8 lg:pb-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-10 pt-10" >
                 <div className="pb-12">
                     <p className="text-sky-300  text-2xl leading-relaxed opacity-80 text-center mb-6">Versatile skill set with a focus on continuous learning</p>
                 </div>
