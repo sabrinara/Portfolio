@@ -25,7 +25,7 @@ const SocialLinks = () => {
                         href={link}
                         rel="noreferrer"
                         target="_blank"
-                        className="rounded-full border-2 p-1 text-primary-700 border-primary-700 hover:bg-primary-600 hover:text-neutral-50 duration-300 hover:scale-125 focus:outline-none focus:ring-2 focus:ring-primary-600"
+                        className="rounded-full border-2 p-1 text-white border-sky-900 hover:bg-sky-800 hover:text-sky-100 duration-300 hover:scale-125 focus:outline-none focus:ring-2 focus:ring-primary-600"
                     >
                         <Icon className="text-xl" icon={icon} />
                     </a>
