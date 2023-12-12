@@ -26,7 +26,7 @@ const Education = () => {
         },
     ]
     return (
-        <div>
+        <div name="education">
             <Title title = "Education"></Title>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mx-6 md:mx-40">
                 {
@@ -46,31 +46,3 @@ const Education = () => {
 };
 
 export default Education;
-
-/**
- *
- * icon : "🎓",
- *  import { Icon } from "@iconify/react";
-
-
-    return (
-        <>
-            <div className="flex justify-center space-x-5">
-                {SOCIAL_LINKS?.map(({ icon, link }, index) => (
-                    <a
-                        key={`link ${index}`}
-                        href={link}
-                        rel="noreferrer"
-                        target="_blank"
-                        className="rounded-full border-2 p-1 text-white border-sky-900 hover:bg-sky-800 hover:text-sky-100 duration-300 hover:scale-125 focus:outline-none focus:ring-2 focus:ring-primary-600"
-                    >
-                        <Icon className="text-xl" icon={icon} />
-                    </a>
-                ))}
-            </div>
-        </>
-    );
-};
-
-export default SocialLinks;
- */

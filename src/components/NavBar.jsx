@@ -36,9 +36,9 @@ const NavBar = () => {
   ]
   return (
     <div className="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
-      <div className="flex justify-between items-center w-full h-20 px-4 text-white backdrop-filter backdrop-blur-lg mb-8 fixed top-0 left-0 z-50 lg:px-16">
+      <div className="flex justify-between items-center w-full h-20 px-4 text-white backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50 lg:px-16">
         <div className="flex justify-between items-center">
-          <img src={"https://i.ibb.co/7g3GrH5/sr.png"} className="w-14" alt="dsadv" />
+          <img src={"https://i.ibb.co/7g3GrH5/sr.png"} className="w-14" alt="sr" />
           <h1 className="text-2xl ml-2 italic font-bold text-sky-500">Portfolio</h1>
         </div>
 
