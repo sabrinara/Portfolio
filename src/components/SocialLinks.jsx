@@ -12,7 +12,7 @@ const SocialLinks = () => {
             icon: 'akar-icons:linkedin-fill',
         },
         {
-            link: 'mailto:saashid18@gmail.com',
+            link: 'mailto:sabrina.rashid.sara@gmail.com',
             icon: 'mdi:email-outline',
         },
     ];

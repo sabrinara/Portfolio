@@ -8,6 +8,8 @@ import Footer from "./Footer";
 import Experience from "./Experience";
 import Skills from "./Skills";
 import Project from "./Project";
+import Project2 from "./Project2";
+import Project1 from "./Project1";
 import Education from "./Education";
 import Contact from "./Contact";
 
@@ -37,6 +39,8 @@ const Main = () => {
             <Intro></Intro>
             <Skills></Skills> 
             <Experience></Experience>
+            <Project1></Project1>
+            <Project2></Project2>
             <Project></Project>
             <Education></Education>
             <Contact></Contact>

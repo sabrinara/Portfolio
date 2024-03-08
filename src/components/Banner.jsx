@@ -15,14 +15,14 @@ const Banner = () => {
                 <h3 className="text-white text-4xl font-bold md:text-6xl md:font-semibold">I&apos;m Sabrina Rashid</h3>
                 <span className="text-white text-4xl font-bold md:text-6xl md:font-semibold mr-2">I&apos;m a</span> <br />
                 <TypeAnimation
-                    sequence={['Web Developer', 1500, 'MERN Stack Developer', 1500]}
+                    sequence={['Software Developer', 1500,'Full Stack Developer', 1500,'Django Rest API Developer', 1500, 'MERN Stack Developer', 1500]}
                     style={{ fontSize: '4em', color: '#7cd1fd', fontWeight: 'bold' }}
                     repeat={Infinity}
                 />
              
                 <div className="my-4 space-x-4 md:space-x-6">
                     <a className="text-md mb-2 mx-auto inline-flex w-28 items-center justify-center rounded-lg border bg-sky-700 px-1 py-2.5 font-medium text-white hover:bg-sky-500 focus:outline-none focus:ring-2 "
-                        href="https://drive.google.com/uc?export=download&id=1PYvXQPrpfDVRIJhZbJ3qDK38CLG7w-bU" target="_blank" rel="noreferrer">Resume <Icon icon={'material-symbols:download'} className="ml-2"></Icon></a>
+                        href="https://drive.google.com/uc?export=download&id=1LHX8SS18WRr-ALoGYmchrsvDtjK4hDNV" target="_blank" rel="noreferrer">Resume <Icon icon={'material-symbols:download'} className="ml-2"></Icon></a>
                     <Link to="contact" className="text-md mb-2 mx-auto inline-flex w-28 items-center justify-center rounded-lg border bg-sky-700 px-1 py-2.5 font-medium text-white hover:bg-sky-400 focus:outline-none focus:ring-2 " smooth={true} duration={500}>Contact Me</Link>
                 </div>
                 <SocialLinks></SocialLinks>

@@ -1,0 +1,22 @@
+[
+    {
+      "id": 1,
+      "projectName": "Expo Elite",
+      "projectType": "Property Selling and Renting Full Stack Website",
+      "fullScreenShot": "https://i.ibb.co/5BtS3QW/expo-elite-dev-vercel-app.png",
+      "projectDescription": "Implemented multi-user dashboards, integrated chat,optimized search/sort, enabled Stripe payments, compare property,dynamic review, like, comment, notification, book appoinment with seller, membership plans for seller and get notify after rent date is over.Archive PDFs of Sell History. Admins oversee user management, contribute dynamic property management.Map features with real time location for rent and purchase the property.",
+      "technologies": [
+      
+          { "id": 1, "icon": "skill-icons:react-dark", "width": "40" },
+          { "id": 2, "icon": "devicon:tailwindcss", "width": "40" },
+          { "id": 3, "icon": "skill-icons:expressjs-dark", "width": "40" },
+          { "id": 4, "icon": "skill-icons:mongodb", "width": "40" },
+          { "id": 5, "icon": "logos:firebase", "width": "40" },
+          { "id": 6, "icon": "logos:jwt-icon", "width": "40" }
+  
+      ],
+      "liveLink": "https://expo-elite-dev.vercel.app/",
+      "clientLink": "https://github.com/nerualninjas/ExpoElite",
+      "serverLink": "https://github.com/nerualninjas/ExpoElite-server"
+    }
+  ]

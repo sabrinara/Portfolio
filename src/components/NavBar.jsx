@@ -25,14 +25,10 @@ const NavBar = () => {
     },
     {
       id: 5,
-      link: "projects",
-    },
-    {
-      id: 6,
       link: "education",
     },
     {
-      id: 7,
+      id: 6,
       link: "contact",
     },
   ];
@@ -61,25 +57,25 @@ const NavBar = () => {
             {dropdown && (
               <ul className="absolute top-10 left-0 bg-slate-900 text-sky-100 p-2 rounded-md">
                 <li className="py-1">
-                  <Link to="projects" smooth={true} duration={1000}>
-                    React Projects
+                  <Link to="project1" smooth={true} duration={1000}>
+                    Django
                   </Link>
                 </li>
                 <li className="py-1">
                   <Link to="project2" smooth={true} duration={1000}>
-                    Team Projects
+                    Team 
                   </Link>
                 </li>
                 <li className="py-1">
-                  <Link to="project3" smooth={true} duration={1000}>
-                    Django Projects
+                  <Link to="projects" smooth={true} duration={1000}>
+                    React
                   </Link>
                 </li>
              
               </ul>
             )}
           </li>
-          <a className="text-white font-semibold" href="https://drive.google.com/uc?export=download&id=1PYvXQPrpfDVRIJhZbJ3qDK38CLG7w-bU" target="_blank" rel="noreferrer">Resume</a>
+          <a className="text-white font-semibold" href="https://drive.google.com/uc?export=download&id=1LHX8SS18WRr-ALoGYmchrsvDtjK4hDNV" target="_blank" rel="noreferrer">Resume</a>
         </ul>
 
         <div
