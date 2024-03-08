@@ -28,7 +28,7 @@ const Education = () => {
     return (
         <div name="education" className='pt-20'>
             <Title title = "Education"></Title>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mx-6 md:mx-40">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mx-6 md:mx-40 mt-10">
                 {
                     EDUCATION?.map(({ id, category, institution, duration, result }) => (
                         <div key={id} className="my-3 border border-box border-sky-900 shadow-2xl shadow-sky-500 p-6 md:p-10">
