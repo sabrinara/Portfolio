@@ -21,6 +21,9 @@ const Skills = () => {
         { id: 15, icon: "logos:vercel", width: "80", name: "Vercel" },
         { id: 16, icon: "skill-icons:mongodb", width: "80", name: "MongoDB" },
         { id: 17, icon: "logos:mysql", width: "80", name: "MySql" },
+        { id: 18, icon: "logos:python", width: "80", name: "Python" },
+        { id: 19, icon: "vscode-icons:file-type-django", width: "80", name: "Django" },
+        { id: 20, icon:"devicon-plain:djangorest", width: "80",  name: "Django Rest" },
     ]
     return (
         <div name="skills" className='pt-20'>

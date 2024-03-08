@@ -8,7 +8,7 @@ const SocialLinks = () => {
             icon: 'akar-icons:github-fill',
         },
         {
-            link: 'https://www.linkedin.com/in/sabrina-rashid-7389492a3/',
+            link: 'https://www.linkedin.com/in/sabrina--rashid',
             icon: 'akar-icons:linkedin-fill',
         },
         {

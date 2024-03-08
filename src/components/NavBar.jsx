@@ -4,6 +4,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 
 const NavBar = () => {
   const [nav, setNav] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
+
   const links = [
     {
       id: 1,
@@ -33,7 +35,8 @@ const NavBar = () => {
       id: 7,
       link: "contact",
     },
-  ]
+  ];
+
   return (
     <div className="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
       <div className="flex justify-between items-center w-full h-20 px-4 text-white backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50 lg:px-16">
@@ -48,12 +51,35 @@ const NavBar = () => {
               key={id}
               className="px-4 cursor-pointer capitalize font-semibold text-white hover:scale-105 duration-200"
             >
-              <Link to={link} smooth={true} duration={500}>
+              <Link to={link} smooth={true} duration={1000}>
                 {link}
               </Link>
             </li>
           ))}
-          <a className="text-white font-semibold" href="https://drive.google.com/uc?export=download&id=1WUvxqWFGzLbTKzQ4Vd6lgoMNR2iUcfWn" target="_blank" rel="noreferrer">Resume</a>
+          <li className="relative px-4 cursor-pointer capitalize font-semibold text-white hover:scale-105 duration-200" onClick={() => setDropdown(!dropdown)}>
+            <span>Projects</span>
+            {dropdown && (
+              <ul className="absolute top-10 left-0 bg-slate-900 text-sky-100 p-2 rounded-md">
+                <li className="py-1">
+                  <Link to="projects" smooth={true} duration={1000}>
+                    React Projects
+                  </Link>
+                </li>
+                <li className="py-1">
+                  <Link to="project2" smooth={true} duration={1000}>
+                    Team Projects
+                  </Link>
+                </li>
+                <li className="py-1">
+                  <Link to="project3" smooth={true} duration={1000}>
+                    Django Projects
+                  </Link>
+                </li>
+             
+              </ul>
+            )}
+          </li>
+          <a className="text-white font-semibold" href="https://drive.google.com/uc?export=download&id=1PYvXQPrpfDVRIJhZbJ3qDK38CLG7w-bU" target="_blank" rel="noreferrer">Resume</a>
         </ul>
 
         <div
@@ -80,7 +106,7 @@ const NavBar = () => {
                 </Link>
               </li>
             ))}
-            <a className="text-xl pt-4 font-extrabold hover:text-sky-400" href="https://drive.google.com/uc?export=download&id=1WUvxqWFGzLbTKzQ4Vd6lgoMNR2iUcfWn" target="_blank" rel="noreferrer">Resume</a>
+            <a className="text-xl pt-4 font-extrabold hover:text-sky-400" href="https://drive.google.com/uc?export=download&id=1PYvXQPrpfDVRIJhZbJ3qDK38CLG7w-bU" target="_blank" rel="noreferrer">Resume</a>
           </ul>
         )}
       </div>
