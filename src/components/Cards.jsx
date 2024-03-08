@@ -29,14 +29,25 @@ const Card = (props) => {
                         {technologies?.map((technologie) => <Icon icon={technologie.icon} width={technologie.width} className="h-10" key={technologie.id}/>)}
                     </div>
                     <div className="flex space-x-5">
-                        <a
+                        {/* //if clientLink is not empty */}
+                        {clientLink && (
+                            <a
+                                href={clientLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-primary-300 border border-primary-300 p-1.5 rounded-md duration-300 hover:scale-125"
+                            >
+                                <span className="flex items-center">Client <FaGithub className="ml-2"></FaGithub></span>
+                            </a>
+                        )}
+                        {/* <a
                             href={clientLink}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-primary-300 border border-primary-300 p-1.5 rounded-md duration-300 hover:scale-125"
                         >
                             <span className="flex items-center">Client <FaGithub className="ml-2"></FaGithub></span>
-                        </a>
+                        </a> */}
                         <a
                             href={serverLink}
                             target="_blank"

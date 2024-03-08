@@ -1,15 +1,32 @@
-import { useEffect, useState } from "react";
+
 import Card from "./Cards";
 import Title from "./Title";
 
 
 const Project = () => {
-    const [projects, setProjects] = useState();
-   useEffect(() => {
-       fetch("/projects.json")
-       .then(res => res.json())
-       .then(data => setProjects(data))
-   })
+  const project1=  [
+        {
+          "id": 1,
+          "projectName": "NewsQuest",
+          "projectType": "Newspaper Django MVT pattern website",
+          "fullScreenShot": "https://i.ibb.co/2cLGXtK/newsquest.png",
+          "projectDescription": "A full stack newspaper website.User can see articles. Rate the articles after login and the most viewed articles will be shown in the home page. Where editor can publish, edit, delete their news. Also the can see their articles. Admin can add publisher and make premium articles. Admin can also delete  articles, editor and user",
+          "technologies": [
+          
+              { "id": 1, "icon": "logos:python", "width": "40" },
+              { "id": 2, "icon": "devicon:tailwindcss", "width": "40" },
+              { "id": 3, "icon": "logos:mysql", "width": "40" },
+              { "id": 4, "icon": "vscode-icons:file-type-django", "width": "40" },
+              
+
+          ],
+          "liveLink": "https://newsquest.onrender.com/",
+    
+          "serverLink": "https://github.com/sabrinara/NewsQuest"
+        }
+    
+    
+      ]
     return (
         <div name="project1" className='pt-20'> 
             <Title title="Django Projects"></Title>
@@ -19,7 +36,7 @@ const Project = () => {
                 <p className="text-sky-400 mt-5 text-2xl leading-relaxed text-center font-semibold">Explore my portfolio of innovative projects</p>
             </div>
             <div className="">
-                 {projects && projects.map(project => <Card project={project} key={project.id}></Card>)}
+                 {project1 && project1.map((project) => <Card key={project.id} project={project} />)}
             </div>
            
         </section>
