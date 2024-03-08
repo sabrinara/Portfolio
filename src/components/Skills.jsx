@@ -8,7 +8,7 @@ const Skills = () => {
         { id: 2, icon: "vscode-icons:file-type-css", width: "94", name: "CSS" },
         { id: 3, icon: "logos:bootstrap", width: "80", name: "Bootstrap" },
         { id: 4, icon: "devicon:tailwindcss", width: "80", name: "Tailwind" },
-        { id: 5, icon: "logos:javascript", width: "70", name: "Javascript" },
+        { id: 5, icon: "skill-icons:javascript", width: "70", name: "Javascript" },
         { id: 6, icon: "skill-icons:react-dark", width: "80", name: "React.js" },
         { id: 7, icon: "logos:nextjs-icon", width: "80", name: "Next.js" },
         { id: 8, icon: "devicon:reactrouter", width: "80", name: "React Router" },
