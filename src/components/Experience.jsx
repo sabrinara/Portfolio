@@ -8,7 +8,7 @@ const Experience = () => {
             <Title title="Experience"></Title>
             <div className="flex flex-col md:flex-row justify-center items-center   md:gap-20 my-10 md:px-20 ">
                 <div className="text-left w-full px-10 md:px-1 md:w-1/2" >
-                    <p className="text-2xl leading-relaxed opacity-80 md:ml-10">As fresher, I&#39;m still learning. But from last nine months I&#39;ve learned many things. I have done different types of projects on HTML, CSS, JavaScript, React, Node.js, MongoDB, etc.</p>
+                    <p className="text-2xl leading-relaxed opacity-80 md:ml-10">As fresher, I&#39;m still learning. But from last nine months I&#39;ve learned many things. I have done different types of projects on HTML, CSS, JavaScript, React.js, Next.js, Node.js, MongoDB, Mongoose, Django etc.</p>
                     <br />
                     <p className="text-xl leading-relaxed opacity-80 md:ml-10">Some of them are : </p>
                     <br />
