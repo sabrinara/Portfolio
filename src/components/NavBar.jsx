@@ -58,7 +58,7 @@ const NavBar = () => {
           <li className="relative px-4 cursor-pointer capitalize font-semibold text-white hover:scale-105 duration-200" onClick={() => setDropdown(!dropdown)}>
             <span>Projects</span>
             {dropdown && (
-              <ul className="absolute top-10 left-0 bg-slate-900 text-sky-100 p-2 rounded-md">
+              <ul className="absolute top-8 left-3 backdrop-filter backdrop-blur-3xl  text-white px-4 bg-slate-800 opacity-80 py-2 rounded-md">
                 <li className="py-1">
                   <Link to="project1" smooth={true} duration={1000}>
                     Django
