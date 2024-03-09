@@ -22,13 +22,16 @@ const NavBar = () => {
     {
       id: 4,
       link: "experience",
-    },
+    }
+  ];
+
+  const link2 = [
     {
-      id: 5,
+      id: 1,
       link: "education",
     },
     {
-      id: 6,
+      id: 2,
       link: "contact",
     },
   ];
@@ -63,7 +66,7 @@ const NavBar = () => {
                 </li>
                 <li className="py-1">
                   <Link to="project2" smooth={true} duration={1000}>
-                    Team 
+                    Team
                   </Link>
                 </li>
                 <li className="py-1">
@@ -71,10 +74,20 @@ const NavBar = () => {
                     React
                   </Link>
                 </li>
-             
+
               </ul>
             )}
           </li>
+          {link2.map(({ id, link }) => (
+            <li
+              key={id}
+              className="px-4 cursor-pointer capitalize font-semibold text-white hover:scale-105 duration-200"
+            >
+              <Link to={link} smooth={true} duration={1000}>
+                {link}
+              </Link>
+            </li>
+          ))}
           <a className="text-white font-semibold" href="https://drive.google.com/uc?export=download&id=1LHX8SS18WRr-ALoGYmchrsvDtjK4hDNV" target="_blank" rel="noreferrer">Resume</a>
         </ul>
 
@@ -102,7 +115,45 @@ const NavBar = () => {
                 </Link>
               </li>
             ))}
-            <a className="text-xl pt-4 font-extrabold hover:text-sky-400" href="https://drive.google.com/uc?export=download&id=1PYvXQPrpfDVRIJhZbJ3qDK38CLG7w-bU" target="_blank" rel="noreferrer">Resume</a>
+            <li className="relative px-4 cursor-pointer capitalize py-4 text-xl font-extrabold hover:text-sky-400 " onClick={() => setDropdown(!dropdown)}>
+              <span>Projects</span>
+              {dropdown && (
+                <ul className="absolute top-10 left-32 bg-sky-900 text-sky-100  px-4 py-2 rounded">
+                  <li className="py-1">
+                    <Link to="project1" smooth={true} duration={500} className="hover:text-sky-400">
+                      Django
+                    </Link>
+                  </li>
+                  <li className="py-1">
+                    <Link to="project2" smooth={true} duration={500} className="hover:text-sky-400" >
+                      Team
+                    </Link>
+                  </li>
+                  <li className="py-1">
+                    <Link to="projects" smooth={true} duration={500} className="hover:text-sky-400">
+                      React
+                    </Link>
+                  </li>
+
+                </ul>
+              )}
+            </li>
+            {link2.map(({ id, link }) => (
+              <li
+                key={id}
+                className="px-4 cursor-pointer capitalize py-4 text-xl font-extrabold hover:text-sky-400 "
+              >
+                <Link
+                  onClick={() => setNav(!nav)}
+                  to={link}
+                  smooth
+                  duration={500}
+                >
+                  {link}
+                </Link>
+              </li>
+            ))}
+            <a className="text-xl pt-4 font-extrabold hover:text-sky-400" href="https://drive.google.com/uc?export=download&id=1LHX8SS18WRr-ALoGYmchrsvDtjK4hDNV" target="_blank" rel="noreferrer">Resume</a>
           </ul>
         )}
       </div>
