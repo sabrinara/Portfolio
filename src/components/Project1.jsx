@@ -3,7 +3,7 @@ import Card from "./Cards";
 import Title from "./Title";
 
 
-const Project = () => {
+const Project1 = () => {
   const project1=  [
         {
           "id": 1,
@@ -44,4 +44,4 @@ const Project = () => {
     );
 };
 
-export default Project;
+export default Project1;
