@@ -44,18 +44,18 @@ const NavBar = () => {
           <h1 className="text-2xl ml-2 italic font-bold text-sky-500">Portfolio</h1>
         </div>
 
-        <ul className="hidden md:flex">
+        <ul className="items-stretch hidden md:flex">
           {links.map(({ id, link }) => (
             <li
               key={id}
-              className="px-4 cursor-pointer capitalize font-semibold text-white hover:scale-105 duration-200"
+              className="  px-4 cursor-pointer capitalize font-semibold text-white hover:scale-105 duration-200"
             >
-              <Link to={link} smooth={true} duration={1000}>
+              <Link to={link} smooth={true} duration={1000} className=" hover:border-b-2 ">
                 {link}
               </Link>
             </li>
           ))}
-          <li className="relative px-4 cursor-pointer capitalize font-semibold text-white hover:scale-105 duration-200" onClick={() => setDropdown(!dropdown)}>
+          <li className="relative px-4 cursor-pointer capitalize font-semibold text-white hover:scale-105 duration-200 hover:border-b-2" onClick={() => setDropdown(!dropdown)}>
             <span>Projects</span>
             {dropdown && (
               <ul className="absolute top-8 left-3 backdrop-filter backdrop-blur-3xl  text-white px-4 bg-slate-800 opacity-80 py-2 rounded-md">
@@ -83,12 +83,12 @@ const NavBar = () => {
               key={id}
               className="px-4 cursor-pointer capitalize font-semibold text-white hover:scale-105 duration-200"
             >
-              <Link to={link} smooth={true} duration={1000}>
+              <Link to={link} smooth={true} duration={1000} className=" hover:border-b-2 ">
                 {link}
               </Link>
             </li>
           ))}
-          <a className="text-white font-semibold" href="https://drive.google.com/uc?export=download&id=1LHX8SS18WRr-ALoGYmchrsvDtjK4hDNV" target="_blank" rel="noreferrer">Resume</a>
+          <a className="text-white font-semibold hover:border-b-2 hover:scale-105 duration-200" href="https://drive.google.com/uc?export=download&id=1LHX8SS18WRr-ALoGYmchrsvDtjK4hDNV" target="_blank" rel="noreferrer">Resume</a>
         </ul>
 
         <div
