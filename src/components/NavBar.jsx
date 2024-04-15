@@ -50,7 +50,7 @@ const NavBar = () => {
               key={id}
               className="  px-4 cursor-pointer capitalize font-semibold text-white hover:scale-105 duration-200"
             >
-              <Link to={link} smooth={true} duration={1000} className=" hover:border-b-2 ">
+              <Link to={link} smooth={true} duration={1000} className="hover:border-b-2 hover:border-sky-500">
                 {link}
               </Link>
             </li>

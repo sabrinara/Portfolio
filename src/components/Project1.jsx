@@ -9,7 +9,7 @@ const Project1 = () => {
           "id": 1,
           "projectName": "NewsQuest",
           "projectType": "Newspaper Django MVT pattern website",
-          "fullScreenShot": "https://i.ibb.co/2cLGXtK/newsquest.png",
+          "fullScreenShot": "https://i.ibb.co/MgV4pzD/newsquest.png",
           "projectDescription": "A full stack newspaper website.User can see articles. Rate the articles after login and the most viewed articles will be shown in the home page. Where editor can publish, edit, delete their news. Also the can see their articles. Admin can add publisher and make premium articles. Admin can also delete  articles, editor and user",
           "technologies": [
           
