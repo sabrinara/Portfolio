@@ -31,7 +31,7 @@ const Project1 = () => {
         <div name="project1" className='pt-20'> 
             <Title title="Django Projects"></Title>
            <section className="px-4 pb-4 md:px-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-10 pt-6" >
-            <div className="pb-8">
+            <div className="pb-6">
                
                 <p className="text-sky-400 mt-5 text-2xl leading-relaxed text-center font-semibold">Explore my portfolio of innovative projects</p>
             </div>
