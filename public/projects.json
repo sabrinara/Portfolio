@@ -3,7 +3,7 @@
     "id": 1,
     "projectName": "The News Hunter",
     "projectType": "Newspaper Full Stack Website",
-    "fullScreenShot": "https://i.ibb.co/Y8M4v2P/News.png",
+    "fullScreenShot": "https://i.ibb.co/nQysMGM/the-news-hunter.png",
     "projectDescription": "A full stack newspaper website. Where publisher can publish their news. Also the can see their articles. Admin can add publisher and make premium articles. Admin can also delete article. Admin can also delete publisher. Admin can also make admin and user.",
     "technologies": [
     
@@ -23,7 +23,7 @@
     "id": 2,
     "projectName": "NEST",
     "projectType": "A Service Sharing Platform",
-    "fullScreenShot": "https://i.ibb.co/BL0dd5N/nest.png",
+    "fullScreenShot": "https://i.ibb.co/mXv0tPG/nest-service-sharing.png",
     "projectDescription": "A home services website. Where user can see services. Login user can add and book their desired services. The can search services. They can add location for receive their service. ",
     "technologies": [
     
