@@ -9,7 +9,7 @@ const Project = () => {
        fetch("/projects.json")
        .then(res => res.json())
        .then(data => setProjects(data))
-   })
+   },[]);
     return (
         <div name="projects" className='pt-20'> 
             <Title title="React Projects"></Title>
