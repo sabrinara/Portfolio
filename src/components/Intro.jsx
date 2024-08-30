@@ -21,7 +21,7 @@ const Intro = () => {
                     </p>
                     <br />
                     <p className="text-lg leading-relaxed opacity-80">
-                        If you&#39;re looking for a dedicated Django or junior MERN developer who is eager to contribute, learn, and grow, I would love to connect. Feel free to reach out to me through email or connect with me on LinkedIn.
+                        If you&#39;re looking for a dedicated Django, MERN developer or Full Stack developer who is eager to contribute, learn, and grow, I would love to connect. Feel free to reach out to me through email or connect with me on LinkedIn.
                     </p>
                     <br />
                   <SocialLinks></SocialLinks>

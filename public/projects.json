@@ -40,6 +40,25 @@
   },
   {
     "id": 3,
+    "projectName": "NatureNest",
+    "projectType": "A Nursery Selling Platform",
+    "fullScreenShot": "./naturenest-online-nursery.png",
+    "projectDescription": "A home services website. Where user can see services. Login user can add and book their desired services. The can search services. They can add location for receive their service. ",
+    "technologies": [
+    
+        { "id": 1, "icon": "skill-icons:react-dark", "width": "40" },
+        { "id": 2, "icon": "devicon:tailwindcss", "width": "40" },
+        { "id": 3, "icon": "simple-icons:shadcnui", "width": "40" },
+        { "id": 4, "icon": "skill-icons:redux", "width": "40" },
+        { "id": 5, "icon": "skill-icons:typescript", "width": "40" }
+
+    ],
+    "liveLink": "https://naturenest-online-nursery.netlify.app",
+    "clientLink": "https://github.com/sabrinara/online-nursery-client"
+    
+  },
+  {
+    "id": 4,
     "projectName": "TechMart",
     "projectType": "E-Commerce Website",
     "fullScreenShot": "https://i.ibb.co/4mYbgVv/TechMart.png",

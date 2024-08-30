@@ -48,14 +48,18 @@ const Card = (props) => {
                         >
                             <span className="flex items-center">Client <FaGithub className="ml-2"></FaGithub></span>
                         </a> */}
-                        <a
-                            href={serverLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary-300 border border-primary-300 p-1.5 rounded-md duration-300 hover:scale-125"
-                        >
-                            <span className="flex items-center">Server <FaGithub className="ml-2"></FaGithub></span>
-                        </a>
+                     {
+                         serverLink && (
+                             <a
+                                 href={serverLink}
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 className="text-primary-300 border border-primary-300 p-1.5 rounded-md duration-300 hover:scale-125"
+                             >
+                                 <span className="flex items-center">Server <FaGithub className="ml-2"></FaGithub></span>
+                             </a>
+                         )
+                     }
                         <a
                             href={liveLink}
                             target="_blank"

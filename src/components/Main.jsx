@@ -55,7 +55,7 @@ const Main = () => {
       <Banner />
       <Intro />
       <Skills />
-      <Experience />
+      {/* <Experience /> */}
       <Project1 />
       <Project2 />
       <Project />
