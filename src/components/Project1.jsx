@@ -23,6 +23,29 @@ const Project1 = () => {
           "liveLink": "https://newsquest.onrender.com/",
     
           "serverLink": "https://github.com/sabrinara/NewsQuest"
+        },
+        {
+          "id": 2,
+          "projectName": "SocioLife",
+          "projectType": "Social Media Django Rest Framework website",
+          "fullScreenShot": "https://i.ibb.co.com/xs44GPJ/social-media-drf.png",
+          "projectDescription": "A full stack social media website.User can add posts, like, comment. Also user can see their posts. They can delete,edit their posts also. ",
+          "technologies": [
+          
+              { "id": 1, "icon": "logos:python", "width": "40" },
+              { "id": 2, "icon": "devicon:tailwindcss", "width": "40" },
+              { "id": 3, "icon": "logos:mysql", "width": "40" },
+              { "id": 4, "icon": "vscode-icons:file-type-django", "width": "40" },
+              { "id": 5, "icon": "skill-icons:react-dark", "width": "40" },
+              { "id": 6, "icon": "devicon:tailwindcss", "width": "40" },
+              { "id": 5, "icon": "devicon:djangorest", "width": "40" },
+              { "id": 6, "icon": "logos:jwt-icon", "width": "40" },
+              { "id": 7, "icon": "skill-icons:postgresql-dark", "width": "40" },
+
+          ],
+          "liveLink": "https://social-media-drf.netlify.app",
+          "clientLink": "https://github.com/sabrinara/Social-Media-React",
+          "serverLink": "https://github.com/sabrinara/Social-Media-DRF"
         }
     
     

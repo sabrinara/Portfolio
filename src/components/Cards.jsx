@@ -19,8 +19,8 @@ const Card = (props) => {
             {/* Description Side */}
             <div className="w-full lg:w-1/2 ">
                 <div className="p-4 lg:p-8 ">
-                    <h2 className="text-white text-3xl lg:text-4xl font-semibold mb-3">{projectName}</h2>
-                    <h2 className="text-white text-xl lg:text-2xl font-medium mb-3">{projectType}</h2>
+                    <h2 className="text-white text-2xl lg:text-4xl font-semibold mb-3">{projectName}</h2>
+                    <h2 className="text-white text-lg lg:text-xl font-medium mb-3">{projectType}</h2>
                     <p className="text-primary-50 text-base opacity-80 mb-6">
                         {projectDescription}
                     </p>

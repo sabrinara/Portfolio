@@ -3,7 +3,7 @@
     "id": 1,
     "projectName": "The News Hunter",
     "projectType": "Newspaper Full Stack Website",
-    "fullScreenShot": "https://i.ibb.co/nQysMGM/the-news-hunter.png",
+    "fullScreenShot": "./the-news-hunter.png",
     "projectDescription": "A full stack newspaper website. Where publisher can publish their news. Also the can see their articles. Admin can add publisher and make premium articles. Admin can also delete article. Admin can also delete publisher. Admin can also make admin and user.",
     "technologies": [
     
@@ -23,7 +23,7 @@
     "id": 2,
     "projectName": "NEST",
     "projectType": "A Service Sharing Platform",
-    "fullScreenShot": "https://i.ibb.co/mXv0tPG/nest-service-sharing.png",
+    "fullScreenShot": "./nest-service-sharing.png",
     "projectDescription": "A home services website. Where user can see services. Login user can add and book their desired services. The can search services. They can add location for receive their service. ",
     "technologies": [
     
@@ -43,7 +43,7 @@
     "projectName": "NatureNest",
     "projectType": "A Nursery Selling Platform",
     "fullScreenShot": "./naturenest-online-nursery.png",
-    "projectDescription": "A home services website. Where user can see services. Login user can add and book their desired services. The can search services. They can add location for receive their service. ",
+    "projectDescription": "A e-commerce services website. Where user can see products. User can add,update,delete products. Products can be search,sort and filter. Category can be add, category wise products can be found. User can puchase plants.  ",
     "technologies": [
     
         { "id": 1, "icon": "skill-icons:react-dark", "width": "40" },
