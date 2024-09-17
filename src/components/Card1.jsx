@@ -8,7 +8,7 @@ const Card1 = (props) => {
     return (
         <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center mb-4 border border-box border-sky-400 rounded-md gap-10 p-10" data-aos="fade-up" data-aos-duration="1000">
             {/* Image Side */}
-            <div className="w-full lg:w-1/2 mb-8 lg:mb-0 h-80 mr-6">
+            <div className="w-full lg:w-1/2 mb-4 md:mb-8 lg:mb-0 h-80 mr-6">
 
                 <img
                     src={fullScreenShot}
@@ -21,13 +21,13 @@ const Card1 = (props) => {
 
             {/* Description Side */}
             <div className="w-full lg:w-1/2 ">
-                <div className="p-4 lg:p-8 ">
+                <div className="p-2 lg:p-8 ">
                     <h2 className="text-white text-2xl lg:text-4xl font-semibold mb-3">{projectName}</h2>
                     <h2 className="text-white text-lg lg:text-xl font-medium mb-3">{projectType}</h2>
                     <p className="text-primary-50 text-base opacity-80 mb-6">
                         {projectDescription}
                     </p>
-                    <div className="flex flex-wrap gap-6 md:gap-10 justify-start items-center my-6">
+                    <div className="flex flex-wrap gap-2 md:gap-10 justify-start items-center my-6">
                         {/* eslint-disable-next-line react/prop-types */}
                         {technologies?.map((technologie) => <Icon icon={technologie.icon} width={technologie.width} className="h-10" key={technologie.id} />)}
                     </div>

@@ -8,7 +8,7 @@ const Card = (props) => {
     return (
         <div className="container mx-auto flex flex-col lg:flex-row items-center mb-4 border border-box border-sky-400 rounded-md gap-10 p-10" data-aos="fade-up" data-aos-duration="1000">
             {/* Image Side */}
-            <div className="w-full lg:w-1/2 mb-8 lg:mb-0 h-72">
+            <div className="w-full lg:w-1/2 mb-4 md:mb-8 lg:mb-0 h-72">
                 <img
                     src={fullScreenShot}
                     alt={projectName}
@@ -18,7 +18,7 @@ const Card = (props) => {
 
             {/* Description Side */}
             <div className="w-full lg:w-1/2 ">
-                <div className="p-4 lg:p-8 ">
+                <div className="p-1 lg:p-8 ">
                     <h2 className="text-white text-2xl lg:text-4xl font-semibold mb-3">{projectName}</h2>
                     <h2 className="text-white text-lg lg:text-xl font-medium mb-3">{projectType}</h2>
                     <p className="text-primary-50 text-base opacity-80 mb-6">

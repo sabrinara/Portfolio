@@ -50,7 +50,7 @@ const Project2 = () => {
         }
     ]
     return (
-        <div name="project2" className='pt-20'>
+        <div name="project2" className='pt-10 md:pt-20'>
             <Title title="Team Project"></Title>
             <section className="px-4 pb-4 md:px-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl mb-6 pt-6" >
                 <div className="pb-4">

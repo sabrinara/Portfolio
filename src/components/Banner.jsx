@@ -16,7 +16,7 @@ const Banner = () => {
                 <span className="text-white text-4xl font-bold md:text-6xl md:font-semibold mr-2">I&apos;m a</span> <br />
                 <TypeAnimation
                     sequence={['Software Developer', 1500,'Full Stack Developer', 1500,'Django Rest API Developer', 1500, 'MERN Stack Developer', 1500]}
-                    style={{ fontSize: '4em', color: '#7cd1fd', fontWeight: 'bold' }}
+                    style={{ fontSize: '3em', color: '#7cd1fd', fontWeight: 'bold' }}
                     repeat={Infinity}
                 />
              
