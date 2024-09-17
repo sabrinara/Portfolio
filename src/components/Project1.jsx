@@ -46,6 +46,48 @@ const Project1 = () => {
           "liveLink": "https://social-media-drf.netlify.app",
           "clientLink": "https://github.com/sabrinara/Social-Media-React",
           "serverLink": "https://github.com/sabrinara/Social-Media-DRF"
+        },
+        {
+          "id": 3,
+          "projectName": "LibraLink",
+          "projectType": "Library Management Django MVT website",
+          "fullScreenShot": "./LibraLink.png",
+          "projectDescription": "A full stack library management website.User can borrow books, edit books. They have to deposite their money. Also they can give rating.",
+          "technologies": [
+          
+            { "id": 1, "icon": "logos:python", "width": "40" },
+            { "id": 2, "icon": "devicon:tailwindcss", "width": "40" },
+            { "id": 3, "icon": "logos:mysql", "width": "40" },
+            { "id": 4, "icon": "vscode-icons:file-type-django", "width": "40" },
+            
+
+        ],
+          "liveLink": "https://library-management-system-2z2w.onrender.com/",
+         
+          "serverLink": "https://github.com/sabrinara/LibraLink-MVT"
+        },
+        {
+          "id": 4,
+          "projectName": "Nothi",
+          "projectType": "Note Taking Django Rest Framework website",
+          "fullScreenShot": "./Nothi.png",
+          "projectDescription": "A full stack note website.User can add notes, edit notes, delete notes. Also they can see their notes. ",
+          "technologies": [
+          
+              { "id": 1, "icon": "logos:python", "width": "40" },
+              { "id": 2, "icon": "devicon:tailwindcss", "width": "40" },
+              { "id": 3, "icon": "logos:mysql", "width": "40" },
+              { "id": 4, "icon": "vscode-icons:file-type-django", "width": "40" },
+              { "id": 5, "icon": "skill-icons:react-dark", "width": "40" },
+              { "id": 6, "icon": "devicon:tailwindcss", "width": "40" },
+              { "id": 5, "icon": "devicon:djangorest", "width": "40" },
+              { "id": 6, "icon": "logos:jwt-icon", "width": "40" },
+              { "id": 7, "icon": "skill-icons:postgresql-dark", "width": "40" },
+
+          ],
+          "liveLink": "https://my-notes-drf.netlify.app",
+          "clientLink": "https://github.com/sabrinara/My-Nodes-drf/tree/main/mynotes-frontend",
+          "serverLink": "https://github.com/sabrinara/My-Nodes-drf"
         }
     
     
