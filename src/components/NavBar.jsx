@@ -88,7 +88,7 @@ const NavBar = () => {
               </Link>
             </li>
           ))}
-          <a className="text-white font-semibold hover:border-b-2 hover:scale-105 duration-200" href="https://drive.google.com/uc?export=download&id=1LHX8SS18WRr-ALoGYmchrsvDtjK4hDNV" target="_blank" rel="noreferrer">Resume</a>
+          <a className="text-white font-semibold hover:border-b-2 hover:scale-105 duration-200" href="https://drive.google.com/uc?export=download&id=1t_Eq3_mRWqFta2GfVGtF6wF3RBfyXLnz" target="_blank" rel="noreferrer">Resume</a>
         </ul>
 
         <div
@@ -153,7 +153,7 @@ const NavBar = () => {
                 </Link>
               </li>
             ))}
-            <a className="text-xl pt-4 font-extrabold hover:text-sky-400" href="https://drive.google.com/uc?export=download&id=1LHX8SS18WRr-ALoGYmchrsvDtjK4hDNV" target="_blank" rel="noreferrer">Resume</a>
+            <a className="text-xl pt-4 font-extrabold hover:text-sky-400" href="https://drive.google.com/uc?export=download&id=1t_Eq3_mRWqFta2GfVGtF6wF3RBfyXLnz" target="_blank" rel="noreferrer">Resume</a>
           </ul>
         )}
       </div>

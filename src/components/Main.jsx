@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import Banner from "./Banner";
 import Intro from "./Intro";
 import Footer from "./Footer";
-import Experience from "./Experience";
+// import Experience from "./Experience";
 import Skills from "./Skills";
 import Project from "./Project";
 import Project2 from "./Project2";
@@ -56,9 +56,10 @@ const Main = () => {
       <Intro />
       <Skills />
       {/* <Experience /> */}
-      <Project1 />
-      <Project2 />
+    
       <Project />
+      <Project2 />
+      <Project1 />
       <Education />
       <Contact />
       <Footer />

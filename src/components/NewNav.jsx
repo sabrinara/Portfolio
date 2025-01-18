@@ -1,5 +1,5 @@
 // NewNav.jsx
-import React, { useState } from 'react';
+import  { useState } from 'react';
 
 const NewNav = () => {
     const [isOpen, setIsOpen] = useState(false);

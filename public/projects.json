@@ -3,7 +3,7 @@
     "id": 1,
     "projectName": "FlexFit",
     "projectType": "Fitness Equipment Saleing Full Stack Website",
-    "fullScreenShot": "../public/FlexFit.png",
+    "fullScreenShot": "./FlexFit.png",
     "projectDescription": "FitFlex is building an innovative e-commerce platform dedicated to fitness enthusiasts, utilizing cutting-edge technologies like React, Redux, Mongoose, and Express. The website will deliver a smooth and intuitive shopping experience, featuring dynamic product listings, immersive product detail pages, and a seamless, user-friendly cart system.",
     "technologies": [
     
@@ -26,8 +26,8 @@
     "id": 2,
     "projectName": "PlayTurf",
     "projectType": "Sports Facility Full Stack Website",
-    "fullScreenShot": "../public/PlayTurf.png",
-    "projectDescription": "A full stack newspaper website. Where user can browse and book their desire facility. They can see facility details. Admin can add,update and delete facility. Admin can also delete facility. Admin can also make admin. Admin and user can update their profile.",
+    "fullScreenShot": "./PlayTurf.png",
+    "projectDescription": "A full stack website. Where user can browse and book their desire facility. They can see facility details. Admin can add,update and delete facility. Admin can also delete facility. Admin can also make admin. Admin and user can update their profile.",
     "technologies": [
     
       { "id": 1, "icon": "skill-icons:react-dark", "width": "30" },
@@ -39,7 +39,7 @@
       { "id": 7, "icon": "devicon:mongoose-wordmark", "width": "30" }
 
     ],
-   "liveLink": "https://playturf.netlify.app",
+   "liveLink": "https://playturf-sports-booking.netlify.app",
     "clientLink": "https://github.com/sabrinara/PlayTurf"
   },
   {
@@ -58,8 +58,8 @@
 
     ],
     "liveLink": "https://naturenest-online-nursery.netlify.app",
-    "clientLink": "https://github.com/sabrinara/online-nursery-client"
-    
+    "clientLink": "https://github.com/sabrinara/online-nursery-client",
+    "serverLink": "https://github.com/sabrinara/online-nursery-server"
   },
   {
     "id": 4,
