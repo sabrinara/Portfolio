@@ -1,8 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* For dark mode variants */
 @custom-variant dark (&:is(.dark *));
 
+/* === Tailwind theme variable mapping === */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -33,6 +35,8 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-buttontext: var(--buttontext);
+
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -42,103 +46,103 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
+
+/* === LIGHT THEME === */
 :root {
   --radius: 0.625rem;
 
-  /* === Light Theme === */
-  --background: #e7fdff;
-  --foreground: #061019;
+  --text: #041325;
+  --background: #f7ffff;
+  --primary: #041325;
+  --secondary: #70abdd;
+  --accent: #2280d3;
+  --buttontext: #f7ffff;
 
-  --card: #ffffff;
-  --card-foreground: #061019;
 
-  --popover: #ffffff;
-  --popover-foreground: #061019;
+  --foreground: var(--text);
+  --card: #eafdff;
+  --card-foreground: var(--text);
 
-  --primary: #011223;
+  --popover: #eaf3f4;
+  --popover-foreground: var(--text);
+
   --primary-foreground: #dcedfe;
-
-  --secondary: #9ae1ef;
-  --secondary-foreground: #011223;
-
+  --secondary-foreground: var(--primary);
   --muted: #f1f8fc;
   --muted-foreground: #5b6d7c;
-
-  --accent: #89c2b3;
-  --accent-foreground: #011223;
+  --accent-foreground: var(--primary);
 
   --destructive: #dc2626;
-
   --border: #cfd9e2;
   --input: #cfd9e2;
-  --ring: #9ae1ef;
+  --ring: var(--secondary);
 
-  /* Optional charts / sidebar tones */
-  --chart-1: #89c2b3;
-  --chart-2: #9ae1ef;
-  --chart-3: #105765;
+  /* Optional charts / sidebar */
+  --chart-1: var(--accent);
+  --chart-2: var(--secondary);
+  --chart-3: var(--primary);
   --chart-4: #011223;
-  --chart-5: #3d7667;
+  --chart-5: #105765;
 
   --sidebar: #eefff9;
-  --sidebar-foreground: #061019;
-  --sidebar-primary: #011223;
+  --sidebar-foreground: var(--text);
+  --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: #dcedfe;
-  --sidebar-accent: #9ae1ef;
-  --sidebar-accent-foreground: #011223;
+  --sidebar-accent: var(--secondary);
+  --sidebar-accent-foreground: var(--primary);
   --sidebar-border: #cfd9e2;
-  --sidebar-ring: #9ae1ef;
+  --sidebar-ring: var(--secondary);
 }
 
+/* === DARK THEME === */
 .dark {
-  /* === Dark Theme === */
-  --background: #041223;
-  --foreground: #e6f0f9;
-
-  --card: #000f0a;
-  --card-foreground: #e6f0f9;
-
-  --popover: #000f0a;
-  --popover-foreground: #e6f0f9;
-
+  --text: #e6f0f9;
+  --background: #041325;
   --primary: #dcedfe;
+  --secondary: #205f98;
+  --accent: #205f98;
+  --buttontext: #f7ffff;
+
+  --foreground: var(--text);
+  --card: #0f1e30;
+  --card-foreground: var(--text);
+
+  --popover: #0f1e30;
+  --popover-foreground: var(--text);
+
   --primary-foreground: #011223;
-
-  --secondary: #105765;
-  --secondary-foreground: #e6f0f9;
-
+  --secondary-foreground: var(--text);
   --muted: #132b2d;
   --muted-foreground: #a7bfc8;
-
-  --accent: #3d7667;
-  --accent-foreground: #e6f0f9;
+  --accent-foreground: var(--text);
 
   --destructive: #f87171;
-
   --border: #1f2e35;
   --input: #1f2e35;
-  --ring: #3d7667;
+  --ring: var(--accent);
 
-  --chart-1: #105765;
-  --chart-2: #3d7667;
+  --chart-1: var(--secondary);
+  --chart-2: var(--accent);
   --chart-3: #9ae1ef;
-  --chart-4: #dcedfe;
+  --chart-4: var(--primary);
   --chart-5: #89c2b3;
 
   --sidebar: #000f0a;
-  --sidebar-foreground: #e6f0f9;
-  --sidebar-primary: #dcedfe;
+  --sidebar-foreground: var(--text);
+  --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: #011223;
-  --sidebar-accent: #105765;
-  --sidebar-accent-foreground: #e6f0f9;
+  --sidebar-accent: var(--secondary);
+  --sidebar-accent-foreground: var(--text);
   --sidebar-border: #1f2e35;
-  --sidebar-ring: #3d7667;
+  --sidebar-ring: var(--accent);
 }
 
+/* === Base Layer === */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
