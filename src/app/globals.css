@@ -52,15 +52,15 @@
   --radius: 0.625rem;
 
   --text: #041325;
-  --background: #f7ffff;
+  --background: #ffffff;
   --primary: #041325;
-  --secondary: #70abdd;
-  --accent: #2280d3;
+  --secondary: #005cc5;
+  --accent: #2188ff;
   --buttontext: #f7ffff;
 
 
   --foreground: var(--text);
-  --card: #eafdff;
+  --card: #f1f8ff;
   --card-foreground: var(--text);
 
   --popover: #eaf3f4;
