@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "A Interactive and Informatic Portfolio for myself in next.js,shadcn ui, mongodb and a backend is available ",
 };
 
-export default function RootLayout({
+export default function CommonLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
