@@ -56,11 +56,13 @@ const Navbar = () => {
                 {navItems.map((item) => (
                     // <NavigationMenuItem key={item.href}>
                     //     <NavigationMenuLink asChild>
-                    <Link key={item.href}
-                        href={item.href}
-                        className={`relative text-sm font-medium tracking-wide transition-colors duration-300
-                                    ${activeButton === item.href ? "text-white" : "text-gray-400 hover:text-white"}`}
-                    >
+                  <Link
+  key={item.href}
+  href={item.href}
+  onClick={() => handleClick(item.href)}  // 👈 this line updates activeButton
+  className={`relative text-sm font-medium tracking-wide transition-colors duration-300
+      ${activeButton === item.href ? "text-white" : "text-gray-400 hover:text-white"}`}
+>
                         <div className="flex flex-row items-center gap-2 relative">
                             <span
                                 className={`h-[2px] rounded-full transition-all duration-300
