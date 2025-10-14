@@ -69,7 +69,7 @@
   --primary-foreground: #dcedfe;
   --secondary-foreground: var(--primary);
   --muted: #f1f8fc;
-  --muted-foreground: #5b6d7c;
+  --muted-foreground: #4c6c86;
   --accent-foreground: var(--primary);
 
   --destructive: #dc2626;
@@ -99,7 +99,7 @@
   --text: #e6f0f9;
   --background: #041325;
   --primary: #dcedfe;
-  --secondary: #205f98;
+  --secondary: #3fffff;
   --accent: #205f98;
   --buttontext: #f7ffff;
 

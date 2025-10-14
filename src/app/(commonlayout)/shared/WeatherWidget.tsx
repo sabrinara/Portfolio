@@ -96,7 +96,7 @@ export default function WeatherWidget() {
       case "Clouds":
         return <Cloud className="w-5 h-5" />;
       default:
-        return <Cloud className="w-5 h-5" />; // 👈 Default icon
+        return <Cloud className="w-5 h-5" />; 
     }
   };
 
@@ -113,12 +113,12 @@ export default function WeatherWidget() {
             </>
           ) : (
             <>
-              <Cloud className="w-5 h-5" /> {/* 👈 default icon if no location */}
+              <Cloud className="w-5 h-5" /> 
             </>
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 p-2">
+      <DropdownMenuContent className="w-48 p-2">
         <div className="flex flex-col gap-2">
           <Input
             placeholder="Search city..."
@@ -141,7 +141,7 @@ export default function WeatherWidget() {
           >
             📍 Use My Location
           </DropdownMenuItem>
-          <div className="text-xs text-muted-foreground px-1">
+          <div className="text-sm text-center md:text-start text-muted-foreground px-1">
             {displayCity}
           </div>
         </div>
