@@ -42,14 +42,14 @@ const Navbar = () => {
                         href={item.href}
                         onClick={() => handleClick(item.href)}
                         className={`relative text-sm font-medium tracking-wide transition-colors duration-300
-                        ${activeButton === item.href ? "text-secondary" : "text-muted-foreground hover:text-secondary"}`}
+                        ${activeButton === item.href ? "text-hovertext" : "text-muted-foreground hover:text-hovertext"}`}
                     >
                         <div className="group flex flex-row items-center gap-2 relative">
                             <span
                                 className={`h-[2px] rounded-full transition-all duration-300
       ${activeButton === item.href
-                                        ? "w-20 bg-secondary"
-                                        : "w-12 bg-muted-foreground group-hover:w-20 group-hover:bg-secondary"}
+                                        ? "w-20 bg-hovertext"
+                                        : "w-12 bg-muted-foreground group-hover:w-20 group-hover:bg-hovertext"}
     `}
                             />
                             <h1

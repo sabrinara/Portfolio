@@ -26,7 +26,7 @@ const HomeLayout = () => {
             <br />
 
             <Navbar/>
-            {/* <Button variant="secondary" className="text-buttontext" >
+            <Button variant="secondary" className="text-buttontext" >
                 Click Me
             </Button>
             <ModeToggle />
@@ -44,7 +44,7 @@ const HomeLayout = () => {
                 <CardFooter>
                     <p>Card Footer</p>
                 </CardFooter>
-            </Card> */}
+            </Card>
 
         </div>
 
