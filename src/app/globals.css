@@ -36,6 +36,7 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
   --color-buttontext: var(--buttontext);
+  --color-hovertext: var(--hovertext);
 
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
@@ -57,6 +58,7 @@
   --secondary: #005cc5;
   --accent: #2188ff;
   --buttontext: #f7ffff;
+  --hovertext:#005cc5;
 
 
   --foreground: var(--text);
@@ -69,7 +71,7 @@
   --primary-foreground: #dcedfe;
   --secondary-foreground: var(--primary);
   --muted: #f1f8fc;
-  --muted-foreground: #5b6d7c;
+  --muted-foreground: #4c6c86;
   --accent-foreground: var(--primary);
 
   --destructive: #dc2626;
@@ -102,6 +104,7 @@
   --secondary: #205f98;
   --accent: #205f98;
   --buttontext: #f7ffff;
+  --hovertext:#3fffff;
 
   --foreground: var(--text);
   --card: #0f1e30;
