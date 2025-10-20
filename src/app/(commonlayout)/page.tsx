@@ -23,7 +23,7 @@ const RootLayout = () => {
     const [isImageLoading, setIsImageLoading] = useState(true);
 
     return (
-        <div className="bg-background text-primary p-6 rounded-lg min-h-screen ">
+        <div className="mx-auto bg-background text-primary p-6 rounded-lg min-h-screen md:w-[1024px]">
             <HomeLayout />
             {/* <h1 className="text-primary text-2xl font-bold">Hello Shadcn + Tailwind v4</h1>
             <p>Custom color palette working perfectly!</p>

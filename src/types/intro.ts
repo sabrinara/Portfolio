@@ -4,7 +4,7 @@ export interface SocialLink {
   url: string;
 }
 
-export interface Intro {
+export interface IIntro {
   _id?: string;
   name: string;
   role: string;

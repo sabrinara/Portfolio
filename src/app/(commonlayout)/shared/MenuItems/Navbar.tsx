@@ -20,7 +20,7 @@ const navItems = [
     { name: "Experiences", href: "#expericences" },
     { name: "Projects", href: "#projects" },
     { name: "Achievements", href: "#achievement" },
-    { name: "Blogs", href: "#blog" },
+    // { name: "Blogs", href: "#blog" },
 ];
 
 const Navbar = () => {
@@ -42,7 +42,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="w-full flex justify-between items-start py-6 px-6 md:px-12 bg-transparent md:bg-transparent backdrop-blur-md md:backdrop-blur-0">
+        <nav className="w-full flex justify-between items-start py-6 px-2  bg-transparent md:bg-transparent backdrop-blur-md md:backdrop-blur-0">
             {/* Left side links */}
             <div className="hidden md:flex flex-col justify-center items-start gap-4">
                 {navItems.map((item) => (
@@ -60,8 +60,8 @@ const Navbar = () => {
                             <span
                                 className={`h-[2px] rounded-full transition-all duration-300
                                     ${activeButton === item.href
-                                        ? "w-20 bg-hovertext"
-                                        : "w-12 bg-muted-foreground group-hover:w-20 group-hover:bg-hovertext"}
+                                        ? "w-24 bg-hovertext"
+                                        : "w-12 bg-muted-foreground group-hover:w-24 group-hover:bg-hovertext"}
                                 `}
                             />
                             <h1
