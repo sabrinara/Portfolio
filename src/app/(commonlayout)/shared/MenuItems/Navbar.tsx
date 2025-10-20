@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { SetStateAction, useState } from "react";
+import { useEffect, useState } from "react";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -9,14 +9,14 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "../../../components/ui/dropdown-menu";
-import { Button } from "../../../components/ui/button";
+} from "../../../../components/ui/dropdown-menu";
+import { Button } from "../../../../components/ui/button";
 import { MoreHorizontalIcon } from "lucide-react";
-import WeatherWidget from "./WeatherWidget";
 import { ModeToggle } from "./ModeToggle";
+import WeatherWidget from "./WeatherWidget";
 
 const navItems = [
-    { name: "About", href: "#" },
+    { name: "About", href: "#about" },
     { name: "Experiences", href: "#expericences" },
     { name: "Projects", href: "#projects" },
     { name: "Achievements", href: "#achievement" },
@@ -24,17 +24,26 @@ const navItems = [
 ];
 
 const Navbar = () => {
-    const [activeButton, setActiveButton] = useState('#');
+    const [activeButton, setActiveButton] = useState<string>("");
 
-    const handleClick = (button: SetStateAction<string>) => {
-        setActiveButton(button);
+    // ✅ Set active button based on URL hash when page loads or hash changes
+    useEffect(() => {
+        const handleHashChange = () => {
+            setActiveButton(window.location.hash || "#about"); // default section
+        };
+
+        handleHashChange();
+        window.addEventListener("hashchange", handleHashChange);
+        return () => window.removeEventListener("hashchange", handleHashChange);
+    }, []);
+
+    const handleClick = (href: string) => {
+        setActiveButton(href);
     };
 
-
-
     return (
-        <nav className="w-full flex justify-between items-center py-6 px-6 md:px-12 bg-transparent md:bg-transparent backdrop-blur-md md:backdrop-blur-0">
-
+        <nav className="w-full flex justify-between items-start py-6 px-6 md:px-12 bg-transparent md:bg-transparent backdrop-blur-md md:backdrop-blur-0">
+            {/* Left side links */}
             <div className="hidden md:flex flex-col justify-center items-start gap-4">
                 {navItems.map((item) => (
                     <Link
@@ -42,39 +51,35 @@ const Navbar = () => {
                         href={item.href}
                         onClick={() => handleClick(item.href)}
                         className={`relative text-sm font-medium tracking-wide transition-colors duration-300
-                        ${activeButton === item.href ? "text-hovertext" : "text-muted-foreground hover:text-hovertext"}`}
+                            ${activeButton === item.href
+                                ? "text-hovertext"
+                                : "text-muted-foreground hover:text-hovertext"}
+                        `}
                     >
                         <div className="group flex flex-row items-center gap-2 relative">
                             <span
                                 className={`h-[2px] rounded-full transition-all duration-300
-      ${activeButton === item.href
+                                    ${activeButton === item.href
                                         ? "w-20 bg-hovertext"
                                         : "w-12 bg-muted-foreground group-hover:w-20 group-hover:bg-hovertext"}
-    `}
+                                `}
                             />
                             <h1
                                 className={`transition-all duration-300
-      ${activeButton === item.href
+                                    ${activeButton === item.href
                                         ? "text-lg"
                                         : "group-hover:text-lg"}
-    `}
+                                `}
                             >
                                 {item.name}
                             </h1>
                         </div>
-
                     </Link>
                 ))}
             </div>
 
-
-            {/* Right Side */}
+            {/* Right side menu */}
             <div className="flex items-center gap-4">
-                <div className="hidden md:flex items-center gap-4">
-                    <WeatherWidget />
-                    <ModeToggle />
-                </div>
-
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button
@@ -96,7 +101,13 @@ const Navbar = () => {
                         <DropdownMenuSeparator />
                         {navItems.map((item) => (
                             <DropdownMenuItem key={item.href} asChild>
-                                <Link href={item.href} className="ml-4">{item.name} </Link>
+                                <Link
+                                    href={item.href}
+                                    onClick={() => handleClick(item.href)}
+                                    className={`ml-4 ${activeButton === item.href ? "text-hovertext font-medium" : ""}`}
+                                >
+                                    {item.name}
+                                </Link>
                             </DropdownMenuItem>
                         ))}
                     </DropdownMenuContent>

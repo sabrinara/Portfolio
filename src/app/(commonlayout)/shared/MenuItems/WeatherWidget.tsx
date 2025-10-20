@@ -7,9 +7,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../../../components/ui/dropdown-menu";
-import { Button } from "../../../components/ui/button";
-import { Input } from "../../../components/ui/input";
+} from "../../../../components/ui/dropdown-menu";
+import { Button } from "../../../../components/ui/button";
+import { Input } from "../../../../components/ui/input";
 
 const apiKey = "8dfc2c49504af46c2b3f2c9286a198c4";
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
@@ -103,7 +103,7 @@ export default function WeatherWidget() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="flex items-center gap-1">
+        <Button variant="outline" className="flex items-center gap-1">
           {loading ? (
             <Loader2 className="w-5 h-5 animate-spin" />
           ) : weather ? (
