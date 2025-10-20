@@ -1,16 +1,16 @@
 // src/services/intro.ts
-import { Intro } from "@/types/intro";
+import { IIntro } from "@/types/intro";
 import api from "./api";
 
 
 // Fetch all intro data
-export const getIntro = async (): Promise<Intro[]> => {
+export const getIntro = async (): Promise<IIntro[]> => {
   const response = await api.get("/intro");
   return response.data;
 };
 
 // Create intro (requires auth)
-export const createIntro = async (data: Intro, token: string): Promise<Intro> => {
+export const createIntro = async (data: IIntro, token: string): Promise<IIntro> => {
   const response = await api.post("/intro", data, {
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -18,7 +18,7 @@ export const createIntro = async (data: Intro, token: string): Promise<Intro> =>
 };
 
 // Update intro by ID
-export const updateIntro = async (id: string, data: Intro, token: string): Promise<Intro> => {
+export const updateIntro = async (id: string, data: IIntro, token: string): Promise<IIntro> => {
   const response = await api.put(`/intro/${id}`, data, {
     headers: { Authorization: `Bearer ${token}` },
   });
