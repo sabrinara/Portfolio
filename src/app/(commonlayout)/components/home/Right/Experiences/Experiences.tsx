@@ -86,6 +86,7 @@ const Experiences = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-1 text-sm bg-secondary/10 text-secondary hover:text-hovertext px-3 py-1 rounded-full"
+                                        title={exp.type}
                                     >
                                         {exp.subTitle} <ArrowUpRight size={14} />
                                     </a>
