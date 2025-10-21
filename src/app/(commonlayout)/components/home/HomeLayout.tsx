@@ -13,11 +13,11 @@ const HomeLayout = () => {
             </div>
 
             <div className="flex w-full justify-between gap-4 pt-[60px] md:pt-0">
-                <div className="w-full md:w-1/2 sticky top-[60px] h-[calc(80vh-60px)]">
+                <div className="w-full md:w-1/3 sticky top-[60px] h-[calc(80vh-60px)]">
                     <LeftComponents />
                 </div>
 
-                <div className="w-full md:w-1/2 pt-2">
+                <div className="w-full md:w-2/3 pt-2">
                     <RightComponents />
                 </div>
             </div>
