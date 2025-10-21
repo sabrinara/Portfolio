@@ -18,13 +18,16 @@ import ImageShimmer from "./components/ImageShimmer";
 import LeftComponents from "./components/home/Left/LeftComponents";
 import RightComponents from "./components/home/Right/RightComponents";
 import HomeLayout from "./components/home/HomeLayout";
+import ScrollToTheTop from "./shared/Scroll/ScrollToTheTop";
 
 const RootLayout = () => {
     const [isImageLoading, setIsImageLoading] = useState(true);
 
     return (
-        <div className="mx-auto bg-background text-primary p-6 rounded-lg min-h-screen md:w-[1120px]">
+        <div className="mx-auto bg-background text-primary md:p-6 rounded-lg min-h-screen md:w-[1120px]">
             <HomeLayout />
+
+            <ScrollToTheTop/>
             {/* <h1 className="text-primary text-2xl font-bold">Hello Shadcn + Tailwind v4</h1>
             <p>Custom color palette working perfectly!</p>
 
