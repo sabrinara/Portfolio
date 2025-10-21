@@ -17,7 +17,7 @@ import WeatherWidget from "./WeatherWidget";
 
 const navItems = [
     { name: "About", href: "#about" },
-    { name: "Experiences", href: "#expericences" },
+    { name: "Experiences", href: "#experiences" },
     { name: "Projects", href: "#projects" },
     { name: "Achievements", href: "#achievement" },
     // { name: "Blogs", href: "#blog" },

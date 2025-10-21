@@ -1,17 +1,17 @@
-import { Experience } from "@/types/experience";
+import { IExperience } from "@/types/experience";
 import api from "./api";
 
 // ✅ Get all experiences
-export const getExperiences = async (): Promise<Experience[]> => {
+export const getExperiences = async (): Promise<IExperience[]> => {
   const response = await api.get("/experience");
   return response.data;
 };
 
 // ✅ Create a new experience (requires auth token)
 export const createExperience = async (
-  data: Experience,
+  data: IExperience,
   token: string
-): Promise<Experience> => {
+): Promise<IExperience> => {
   const response = await api.post("/experience", data, {
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -21,9 +21,9 @@ export const createExperience = async (
 // ✅ Update experience by ID (requires auth token)
 export const updateExperience = async (
   id: string,
-  data: Experience,
+  data: IExperience,
   token: string
-): Promise<Experience> => {
+): Promise<IExperience> => {
   const response = await api.put(`/experience/${id}`, data, {
     headers: { Authorization: `Bearer ${token}` },
   });
