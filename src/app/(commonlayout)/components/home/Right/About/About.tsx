@@ -33,7 +33,7 @@ const About = () => {
   if (!introData || !introData.about_content) return null;
 
   return (
-    <section id="about" className="scroll-mt-[60px] my-4">
+    <section id="about" className="scroll-mt-[60px] my-2">
       {/* <h1 className="text-3xl font-medium text-text mb-4">About</h1> */}
       <div
         className="text-justify text-muted-foreground leading-relaxed"

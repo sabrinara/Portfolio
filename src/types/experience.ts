@@ -1,12 +1,13 @@
-export type ExperienceType = "company" | "team";
+export type IExperienceType = "company" | "team" | "course";
 
-export interface Experience {
+export interface IExperience {
   _id?: string;
   title?: string;
+  subTitle?: string;
   about?: string;
   startDate?: string; // ISO string
   endDate?: string;   // ISO string
-  type: ExperienceType;
+  type: IExperienceType;
   technologies: string[];
   certificateUrl?: string;
   url?: string;
