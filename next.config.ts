@@ -4,7 +4,8 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["picsum.photos",
       "images.unsplash.com",
-      "res.cloudinary.com"
+      "res.cloudinary.com",
+      "i.ibb.co"
     ], // ✅ only hostname, no protocol or slash
   },
 };

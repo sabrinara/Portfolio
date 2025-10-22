@@ -9,6 +9,7 @@ export type ProjectType = "company" | "team" | "personal";
 export interface Project {
   _id?: string;
   title: string;
+  category: string;
   imageArray: string[];
   type: ProjectType;
   technologyType?: string;
