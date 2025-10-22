@@ -56,7 +56,7 @@ const Experiences = () => {
                         key={exp._id}
                         className="flex justify-between items-start rounded-2xl py-5 md:px-2 hover:bg-card/20 gap-4"
                     >
-                        <div className="hidden md:flex items-center gap-2 text-muted-foreground text-sm font-bold whitespace-nowrap md:mt-1">
+                        <div className="hidden md:flex items-center gap-2 text-muted-foreground/80 text-sm font-bold whitespace-nowrap md:mt-1">
                             <CalendarDays size={16} />
                             <span>
                                 {exp.startDate ? new Date(exp.startDate).toLocaleDateString() : "N/A"} –{" "}
@@ -87,7 +87,7 @@ const Experiences = () => {
                                         href={exp.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-1 text-sm bg-secondary/10 text-secondary hover:text-hovertext px-3 py-1 rounded-full"
+                                        className="flex items-center gap-1 text-sm bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full"
                                         title={exp.type}
                                     >
                                         {exp.subTitle} <ArrowUpRight size={14} />
@@ -104,7 +104,7 @@ const Experiences = () => {
                                     {exp.technologies.map((tech, index) => (
                                         <span
                                             key={index}
-                                            className="bg-secondary/10 text-secondary hover:text-hovertext px-3 py-1 rounded-full text-sm"
+                                            className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm"
                                         >
                                             {tech}
                                         </span>
