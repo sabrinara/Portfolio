@@ -1,9 +1,9 @@
 import React from 'react';
 import About from './About/About';
 import Experiences from './Experiences/Experiences';
-import WeatherWidget from '@/app/(commonlayout)/shared/MenuItems/WeatherWidget';
-import { ModeToggle } from '@/app/(commonlayout)/shared/MenuItems/ModeToggle';
+
 import Projects from './Projects/Projects';
+import Achievement from './Achievement/Achievement';
 
 const RightComponents = () => {
     return (
@@ -11,6 +11,7 @@ const RightComponents = () => {
             <About />
             <Experiences />
             <Projects />
+            <Achievement/>
         </div>
     );
 };

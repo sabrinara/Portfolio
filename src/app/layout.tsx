@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./(commonlayout)/providers/theme-provider";
+import "aos/dist/aos.css";
 
 
 

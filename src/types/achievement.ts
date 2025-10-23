@@ -1,4 +1,4 @@
-export interface Achievement {
+export interface IAchievement {
   _id?: string;
   title: string;
   details: string;
