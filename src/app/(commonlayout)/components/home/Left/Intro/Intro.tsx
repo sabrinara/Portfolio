@@ -43,9 +43,9 @@ const Intro = () => {
   if (!introData) return null;
 
   return (
-    <div className="my-2 flex flex-col md:flex-row gap-6 items-start">
+    <div className="my-6 md:my-2 flex flex-col md:flex-row gap-6 items-start">
       <div>
-        <h1 className="text-5xl font-medium text-text">{introData.name}</h1>
+        <h1 className="text-4xl md:text-5xl font-medium text-text">{introData.name}</h1>
         <h2 className="text-xl text-foreground mt-2">{introData.role}</h2>
 
         <p className="my-4 text-muted-foreground max-w-2xl whitespace-pre-line"  dangerouslySetInnerHTML={{ __html: introData.smallDetails }}/>

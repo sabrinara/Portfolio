@@ -45,18 +45,18 @@ const Experiences = () => {
 
 
     return (
-        <section className="scroll-mt-[60px] my-16" id="experiences">
-            {/* <h1 className="text-3xl font-semibold uppercase mb-6 text-text">
+        <section className="scroll-mt-[100px] md:scroll-mt-[60px] my-2" id="experiences">
+            <h1 className="md:hidden text-2xl font-medium text-text mt-6">
                 Experiences
-            </h1> */}
+            </h1>
 
             <div className="flex flex-col gap-6">
                 {sortedExperiences.map((exp) => (
                     <div
                         key={exp._id}
-                        className="flex justify-between items-start rounded-2xl py-5 px-2 hover:bg-card/20 gap-4"
+                        className="flex justify-between items-start rounded-2xl py-5 md:px-2 hover:bg-card/20 gap-4"
                     >
-                        <div className="flex items-center gap-2 text-muted-foreground text-sm font-bold whitespace-nowrap md:mt-1">
+                        <div className="hidden md:flex items-center gap-2 text-muted-foreground/80 text-sm font-bold whitespace-nowrap md:mt-1">
                             <CalendarDays size={16} />
                             <span>
                                 {exp.startDate ? new Date(exp.startDate).toLocaleDateString() : "N/A"} –{" "}
@@ -67,9 +67,9 @@ const Experiences = () => {
                         </div>
 
                         <div>
-                            <div className="flex flex-col md:flex-row justify-between md:items-center gap-2">
+                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                                 {/* <h2 className="text-xl font-bold text-text">{exp.title}</h2> */}
-                                {exp.certificateUrl && (
+                                {exp.certificateUrl ? (
                                     <a
                                         href={exp.certificateUrl}
                                         target="_blank"
@@ -79,13 +79,15 @@ const Experiences = () => {
                                     >
                                         {exp.title}
                                     </a>
-                                )}
+                                ) :
+                                    <h2 className="text-xl font-bold text-text">{exp.title}</h2>
+                                }
                                 {exp.url && (
                                     <a
                                         href={exp.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-1 text-sm bg-secondary/10 text-secondary hover:text-hovertext px-3 py-1 rounded-full"
+                                        className="flex items-center gap-1 text-sm bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full"
                                         title={exp.type}
                                     >
                                         {exp.subTitle} <ArrowUpRight size={14} />
@@ -102,7 +104,7 @@ const Experiences = () => {
                                     {exp.technologies.map((tech, index) => (
                                         <span
                                             key={index}
-                                            className="bg-secondary/10 text-secondary hover:text-hovertext px-3 py-1 rounded-full text-sm"
+                                            className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm"
                                         >
                                             {tech}
                                         </span>
@@ -110,7 +112,15 @@ const Experiences = () => {
                                 </div>
                             )}
 
-
+                            <div className="flex justify-end md:hidden items-center gap-2 text-muted-foreground text-sm font-bold whitespace-nowrap mt-4">
+                                <CalendarDays size={16} />
+                                <span>
+                                    {exp.startDate ? new Date(exp.startDate).toLocaleDateString() : "N/A"} –{" "}
+                                    {exp.endDate && exp.endDate.toLowerCase() !== "present"
+                                        ? new Date(exp.endDate).toLocaleDateString()
+                                        : "Present"}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 ))}

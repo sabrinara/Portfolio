@@ -42,7 +42,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="w-full flex justify-between items-start py-6 px-2  bg-transparent md:bg-transparent backdrop-blur-md md:backdrop-blur-0">
+        <nav className="w-full flex justify-between md:items-start py-4 md:py-6 md:px-2  bg-transparent md:bg-transparent backdrop-blur-md md:backdrop-blur-0">
             {/* Left side links */}
             <div className="hidden md:flex flex-col justify-center items-start gap-4">
                 {navItems.map((item) => (

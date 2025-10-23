@@ -3,11 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { getIntro } from "@/services/intro";
 import { IIntro } from "@/types/intro";
+import { useTheme } from "next-themes";
 
 const About = () => {
   const [introData, setIntroData] = useState<IIntro | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchIntro = async () => {
@@ -28,17 +30,30 @@ const About = () => {
     fetchIntro();
   }, []);
 
-  if (loading) return <p className="text-muted-foreground mt-4">Loading intro...</p>;
+  if (loading)
+    return <p className="text-muted-foreground mt-4">Loading intro...</p>;
   if (error) return <p className="text-red-500 mt-4">{error}</p>;
-  if (!introData || !introData.about_content) return null;
+  if (!introData) return null;
 
   return (
-    <section id="about" className="scroll-mt-[60px] my-2">
-      {/* <h1 className="text-3xl font-medium text-text mb-4">About</h1> */}
-      <div
-        className="text-justify text-muted-foreground leading-relaxed"
-        dangerouslySetInnerHTML={{ __html: introData.about_content }}
-      />
+    <section id="about" className="scroll-mt-[100px] md:scroll-mt-[60px] my-2">
+      <h1 className="md:hidden text-2xl font-medium text-text mt-4">About</h1>
+
+      {theme === "dark" ? (
+        <div
+          className="text-justify text-muted-foreground leading-relaxed"
+          dangerouslySetInnerHTML={{
+            __html: introData.about_content_dark || "",
+          }}
+        />
+      ) : (
+        <div
+          className="text-justify text-muted-foreground leading-relaxed"
+          dangerouslySetInnerHTML={{
+            __html: introData.about_content || "",
+          }}
+        />
+      )}
     </section>
   );
 };
