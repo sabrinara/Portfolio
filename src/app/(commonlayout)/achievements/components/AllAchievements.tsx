@@ -71,7 +71,7 @@ const AllAchievements = () => {
             id="achievement"
         >
             <h1 className="text-3xl font-semibold text-center mb-8 text-text">
-                My <span className="text-secondary">Achievements</span>
+                My <span className="text-hovertext">Achievements</span>
             </h1>
 
             {/* 🧩 Achievements Grid */}
@@ -88,9 +88,8 @@ const AllAchievements = () => {
                             <Image
                                 src={ach.image}
                                 alt={ach.title}
-                                width={600}
-                                height={400}
-                                className="w-full h-auto rounded object-cover group-hover:scale-105 transition-transform duration-700"
+                                fill
+                                className="w-full h-56 rounded object-cover group-hover:scale-105 transition-transform duration-700"
                             />
                         )}
                         <div className="absolute bottom-0 w-full bg-black/60 text-white p-3 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
