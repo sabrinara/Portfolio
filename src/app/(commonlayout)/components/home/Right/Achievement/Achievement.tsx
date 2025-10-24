@@ -51,7 +51,7 @@ const Achievement = () => {
 
     return (
         <section
-            className="scroll-mt-[100px] md:scroll-mt-[60px] my-6"
+            className="scroll-mt-[100px] md:scroll-mt-[60px] my-2  md:mt-20"
             id="achievement"
         >
             <h1 className="md:hidden text-2xl font-medium text-text mt-6">
@@ -106,7 +106,7 @@ const Achievement = () => {
 
             {/* 🔗 View More Button */}
             <div onClick={() => router.push("/achievements")} className="flex justify-end">
-                <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full cursor-pointer hover:text-hovertext hover:bg-secondary/10 transition-all duration-300 text-text">
+               <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full cursor-pointer hover:text-text bg-secondary/10 transition-all duration-300 text-hovertext">
                     View all achievements <ArrowUpRight size={16} />
                 </div>
             </div>

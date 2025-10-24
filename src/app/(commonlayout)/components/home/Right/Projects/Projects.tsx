@@ -37,7 +37,7 @@ const Projects = () => {
     const displayedProjects = projects.slice(0, 3);
 
     return (
-        <section className="scroll-mt-[100px] md:scroll-mt-[60px] my-6" id="projects">
+        <section className="scroll-mt-[100px] md:scroll-mt-[60px] my-2  md:mt-20" id="projects">
             <h1 className="md:hidden text-2xl font-medium text-text mt-6">
                 Projects
             </h1>
@@ -91,7 +91,7 @@ const Projects = () => {
                 ))}
             </div>
             <div onClick={() => router.push('/projects')} className="flex justify-end">
-                <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full cursor-pointer text-text hover:text-hovertext hover:bg-secondary/10 transition-all duration-300">
+                <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full cursor-pointer hover:text-text bg-secondary/10 transition-all duration-300 text-hovertext">
                     View more projects <ArrowUpRight size={16} />
                 </div>
             </div>

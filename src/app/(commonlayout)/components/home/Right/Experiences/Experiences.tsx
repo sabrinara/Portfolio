@@ -4,8 +4,10 @@ import React, { useEffect, useState } from "react";
 import { getExperiences } from "@/services/experience";
 import { IExperience } from "@/types/experience";
 import { CalendarDays, Link as LinkIcon, FileText, ArrowUpRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Experiences = () => {
+    const router = useRouter();
     const [experiences, setExperiences] = useState<IExperience[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -43,15 +45,15 @@ const Experiences = () => {
         return bEnd.getTime() - aEnd.getTime();
     });
 
-
+      const displayedExperiences = sortedExperiences.slice(0, 3);
     return (
-        <section className="scroll-mt-[100px] md:scroll-mt-[60px] my-2" id="experiences">
+        <section className="scroll-mt-[100px] md:scroll-mt-[60px] my-2 md:mt-20" id="experiences">
             <h1 className="md:hidden text-2xl font-medium text-text mt-6">
                 Experiences
             </h1>
 
             <div className="flex flex-col gap-6">
-                {sortedExperiences.map((exp) => (
+                {displayedExperiences.map((exp) => (
                     <div
                         key={exp._id}
                         className="flex justify-between items-start rounded-2xl py-5 md:px-2 hover:bg-card/20 gap-4"
@@ -124,6 +126,12 @@ const Experiences = () => {
                         </div>
                     </div>
                 ))}
+            </div>
+            {/* 🔗 View More Button */}
+            <div onClick={() => router.push("/experiences")} className="flex justify-end">
+                <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full cursor-pointer hover:text-text bg-secondary/10 transition-all duration-300 text-hovertext">
+                    View all my experiences <ArrowUpRight size={16} />
+                </div>
             </div>
         </section>
     );
