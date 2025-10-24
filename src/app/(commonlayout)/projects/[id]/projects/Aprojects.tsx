@@ -7,15 +7,19 @@ import { Project } from "@/types/projects";
 import Image from "next/image";
 
 const Aprojects = () => {
-  const { id } = useParams(); // 🆔 get ID from URL
+  // ✅ Ensure correct typing from useParams()
+  const params = useParams();
+  const id = params?.id as string | undefined;
+
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
+
     const fetchProject = async () => {
       try {
-        const data = await getProjectById(id as string);
+        const data = await getProjectById(id);
         setProject(data);
       } catch (error) {
         console.error("Failed to fetch project", error);
@@ -23,11 +27,17 @@ const Aprojects = () => {
         setLoading(false);
       }
     };
+
     fetchProject();
   }, [id]);
 
-  if (loading) return <p className="mt-4 text-muted-foreground">Loading...</p>;
-  if (!project) return <p className="mt-4 text-red-500">Project not found</p>;
+  if (loading) {
+    return <p className="mt-4 text-muted-foreground">Loading...</p>;
+  }
+
+  if (!project) {
+    return <p className="mt-4 text-red-500">Project not found</p>;
+  }
 
   return (
     <section className="max-w-4xl mx-auto py-10">
@@ -45,24 +55,28 @@ const Aprojects = () => {
       )}
 
       {project.subTitle && (
-        <p className="text-lg text-muted-foreground mb-4">{project.subTitle}</p>
+        <p className="text-lg text-muted-foreground mb-4">
+          {project.subTitle}
+        </p>
       )}
 
       <p className="text-base mb-6">{project.description}</p>
 
-      <div>
-        <h3 className="font-semibold mb-2">Technologies Used:</h3>
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm"
-            >
-              {tech}
-            </span>
-          ))}
+      {project.technologies && project.technologies.length > 0 && (
+        <div>
+          <h3 className="font-semibold mb-2">Technologies Used:</h3>
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.map((tech) => (
+              <span
+                key={tech}
+                className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

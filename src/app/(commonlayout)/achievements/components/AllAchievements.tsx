@@ -19,7 +19,7 @@ import "aos/dist/aos.css";
 
 const AllAchievements = () => {
     const [achievements, setAchievements] = useState<IAchievement[]>([]);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [selected, setSelected] = useState<IAchievement | null>(null);
 
@@ -35,10 +35,9 @@ const AllAchievements = () => {
 
         const fetchAchievements = async () => {
             try {
-                setLoading(true);
+                // setLoading(true);
                 const data = await getAchievements();
-
-                // 🧩 Sort by date (latest first)
+             
                 const sortedData = (data || []).sort((a, b) => {
                     const dateA = a.date ? new Date(a.date).getTime() : 0;
                     const dateB = b.date ? new Date(b.date).getTime() : 0;
@@ -52,15 +51,15 @@ const AllAchievements = () => {
                 console.error(err);
                 setError("Failed to fetch achievements.");
             } finally {
-                setLoading(false);
+                // setLoading(false);
             }
         };
 
         fetchAchievements();
     }, []);
 
-    if (loading)
-        return <p className="text-muted-foreground mt-4 text-center">Loading achievements...</p>;
+    // if (loading)
+    //     return <p className="text-muted-foreground mt-4 text-center">Loading achievements...</p>;
 
     if (error)
         return <p className="text-red-500 mt-4 text-center">{error}</p>;
