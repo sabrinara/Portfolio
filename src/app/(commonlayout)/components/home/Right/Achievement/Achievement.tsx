@@ -52,7 +52,7 @@ const Achievement = () => {
     return (
         <section
             className="scroll-mt-[100px] md:scroll-mt-[60px] my-4  md:mt-20"
-            id="achievement"
+            id="achievements"
         >
           <h1 className="md:hidden text-2xl font-medium text-text my-4 text-center">
                 Achievements
@@ -78,8 +78,8 @@ const Achievement = () => {
 
                         {/* 📝 Details */}
                         <div className="w-3/4">
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-[20px] font-semibold text-text">{ach.title}</h2>
+                        <div className="flex justify-between items-center mb-2">
+                            <h2 className="text-[20px] font-semibold text-hovertext">{ach.title}</h2>
 
                             {/* Type */}
                             <p className="text-hovertext text-sm font-medium capitalize mb-1 bg-secondary/10 px-2 py-1 rounded-full">

@@ -17,10 +17,11 @@ import WeatherWidget from "./WeatherWidget";
 
 const navItems = [
   { name: "About", href: "#about" },
+  { name: "Education", href: "#education" },
+  { name: "Skills", href: "#skills" },
   { name: "Experiences", href: "#experiences" },
   { name: "Projects", href: "#projects" },
-  { name: "Achievements", href: "#achievement" },
-  { name: "Education", href: "#education" },
+  { name: "Achievements", href: "#achievements" },
 ];
 
 const SCROLL_OVERRIDE_MS = 800; // time after a click where scroll won't override active (tune this)
@@ -45,48 +46,54 @@ const Navbar = () => {
   }, []);
 
   // Scroll-based active detection that respects recent manual clicks
-  useEffect(() => {
-    const sections = document.querySelectorAll<HTMLElement>("section[id]");
+useEffect(() => {
+  let sections: NodeListOf<HTMLElement> = document.querySelectorAll("section[id]");
 
-    const handleScroll = () => {
-      // If user clicked recently, don't let scroll override immediately
-      const now = Date.now();
-      const elapsed = now - (lastManualNavRef.current || 0);
-      const allowScrollOverride = elapsed > SCROLL_OVERRIDE_MS;
+  const updateSections = () => {
+    sections = document.querySelectorAll("section[id]");
+  };
 
-      // Determine which section is currently in view (last whose top <= scrollY + offset)
-      const offset = 120; // tune this to match your header/sticky offsets
-      let currentId: string | null = null;
-      sections.forEach((section) => {
-        const top = section.getBoundingClientRect().top + window.scrollY - offset;
-        if (window.scrollY >= top) {
-          currentId = section.getAttribute("id");
-        }
-      });
+  const handleScroll = () => {
+    const now = Date.now();
+    const elapsed = now - (lastManualNavRef.current || 0);
+    const allowScrollOverride = elapsed > SCROLL_OVERRIDE_MS;
 
-      if (currentId) {
-        const newActive = `#${currentId}`;
-        // Only update if either allowed or there's no recent manual click
-        if (allowScrollOverride) {
-          setActiveButton((prev) => (prev !== newActive ? newActive : prev));
-        } else {
-          // If not allowed to override, still keep state in sync if activeButton is empty (first load)
-          setActiveButton((prev) => (prev === "" ? newActive : prev));
-        }
+    const offset = 100;
+    let currentId: string | null = null;
+
+    sections.forEach((section) => {
+      const top = section.getBoundingClientRect().top + window.scrollY - offset;
+      if (window.scrollY >= top) currentId = section.id;
+    });
+
+    if (currentId) {
+      const newActive = `#${currentId}`;
+      if (allowScrollOverride) {
+        setActiveButton((prev) => (prev !== newActive ? newActive : prev));
+      } else if (activeButton === "") {
+        setActiveButton(newActive);
       }
-    };
+    }
+  };
 
-    // run once on mount to set initial state correctly
-    handleScroll();
+  // Observe DOM changes to update sections when API content mounts
+  const observer = new MutationObserver(() => updateSections());
+  observer.observe(document.body, { childList: true, subtree: true });
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // run once
+  // Initial setup
+  updateSections();
+  handleScroll();
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("resize", handleScroll);
+
+  return () => {
+    observer.disconnect();
+    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("resize", handleScroll);
+  };
+}, [activeButton]);
+
 
   const handleClick = (href: string) => {
     // immediate highlight on click
