@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "../../../../components/ui/dropdown-menu";
 import { Button } from "../../../../components/ui/button";
 import { MoreHorizontalIcon } from "lucide-react";
@@ -16,105 +16,161 @@ import { ModeToggle } from "./ModeToggle";
 import WeatherWidget from "./WeatherWidget";
 
 const navItems = [
-    { name: "About", href: "#about" },
-    { name: "Experiences", href: "#experiences" },
-    { name: "Projects", href: "#projects" },
-    { name: "Achievements", href: "#achievement" },
-    // { name: "Blogs", href: "#blog" },
+  { name: "About", href: "#about" },
+  { name: "Experiences", href: "#experiences" },
+  { name: "Projects", href: "#projects" },
+  { name: "Achievements", href: "#achievement" },
+  { name: "Education", href: "#education" },
 ];
 
+const SCROLL_OVERRIDE_MS = 800; // time after a click where scroll won't override active (tune this)
+
 const Navbar = () => {
-    const [activeButton, setActiveButton] = useState<string>("");
+  const [activeButton, setActiveButton] = useState<string>("");
+  // store last time user clicked a nav item
+  const lastManualNavRef = useRef<number>(0);
 
-    // ✅ Set active button based on URL hash when page loads or hash changes
-    useEffect(() => {
-        const handleHashChange = () => {
-            setActiveButton(window.location.hash || "#about"); // default section
-        };
-
-        handleHashChange();
-        window.addEventListener("hashchange", handleHashChange);
-        return () => window.removeEventListener("hashchange", handleHashChange);
-    }, []);
-
-    const handleClick = (href: string) => {
-        setActiveButton(href);
+  // Keep existing hash-change logic (initial load and manual hash changes)
+  useEffect(() => {
+    const handleHashChange = () => {
+      // ensure we set to hash if present, otherwise default to #about
+      const h = window.location.hash || "#about";
+      setActiveButton(h);
     };
 
-    return (
-        <nav className="w-full flex justify-between md:items-start py-4 md:py-6 md:px-2  bg-transparent md:bg-transparent backdrop-blur-md md:backdrop-blur-0">
-            {/* Left side links */}
-            <div className="hidden md:flex flex-col justify-center items-start gap-4">
-                {navItems.map((item) => (
-                    <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => handleClick(item.href)}
-                        className={`relative text-sm font-medium tracking-wide transition-colors duration-300
-                            ${activeButton === item.href
-                                ? "text-hovertext"
-                                : "text-muted-foreground hover:text-hovertext"}
-                        `}
-                    >
-                        <div className="group flex flex-row items-center gap-2 relative">
-                            <span
-                                className={`h-[2px] rounded-full transition-all duration-300
-                                    ${activeButton === item.href
-                                        ? "w-24 bg-hovertext"
-                                        : "w-12 bg-muted-foreground group-hover:w-24 group-hover:bg-hovertext"}
-                                `}
-                            />
-                            <h1
-                                className={`transition-all duration-300
-                                    ${activeButton === item.href
-                                        ? "text-lg"
-                                        : "group-hover:text-lg"}
-                                `}
-                            >
-                                {item.name}
-                            </h1>
-                        </div>
-                    </Link>
-                ))}
-            </div>
+    // initialize from current hash on mount
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
-            {/* Right side menu */}
-            <div className="flex items-center gap-4">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                            variant="outline"
-                            aria-label="Open menu"
-                            size="icon-sm"
-                            className="md:hidden"
-                        >
-                            <MoreHorizontalIcon />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-48">
-                        <DropdownMenuLabel>
-                            <div className="flex justify-between items-center gap-2">
-                                <WeatherWidget />
-                                <ModeToggle />
-                            </div>
-                        </DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        {navItems.map((item) => (
-                            <DropdownMenuItem key={item.href} asChild>
-                                <Link
-                                    href={item.href}
-                                    onClick={() => handleClick(item.href)}
-                                    className={`ml-4 ${activeButton === item.href ? "text-hovertext font-medium" : ""}`}
-                                >
-                                    {item.name}
-                                </Link>
-                            </DropdownMenuItem>
-                        ))}
-                    </DropdownMenuContent>
-                </DropdownMenu>
+  // Scroll-based active detection that respects recent manual clicks
+  useEffect(() => {
+    const sections = document.querySelectorAll<HTMLElement>("section[id]");
+
+    const handleScroll = () => {
+      // If user clicked recently, don't let scroll override immediately
+      const now = Date.now();
+      const elapsed = now - (lastManualNavRef.current || 0);
+      const allowScrollOverride = elapsed > SCROLL_OVERRIDE_MS;
+
+      // Determine which section is currently in view (last whose top <= scrollY + offset)
+      const offset = 120; // tune this to match your header/sticky offsets
+      let currentId: string | null = null;
+      sections.forEach((section) => {
+        const top = section.getBoundingClientRect().top + window.scrollY - offset;
+        if (window.scrollY >= top) {
+          currentId = section.getAttribute("id");
+        }
+      });
+
+      if (currentId) {
+        const newActive = `#${currentId}`;
+        // Only update if either allowed or there's no recent manual click
+        if (allowScrollOverride) {
+          setActiveButton((prev) => (prev !== newActive ? newActive : prev));
+        } else {
+          // If not allowed to override, still keep state in sync if activeButton is empty (first load)
+          setActiveButton((prev) => (prev === "" ? newActive : prev));
+        }
+      }
+    };
+
+    // run once on mount to set initial state correctly
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // run once
+
+  const handleClick = (href: string) => {
+    // immediate highlight on click
+    setActiveButton(href);
+
+    // record manual navigation time so scroll handler won't override immediately
+    lastManualNavRef.current = Date.now();
+
+    // optional: update hash programmatically if you want exact control (next/link will do this)
+    // window.location.hash = href;
+  };
+
+  return (
+    <nav className="w-full flex justify-between md:items-start py-4 md:py-6 md:px-2 bg-transparent md:bg-transparent backdrop-blur-md md:backdrop-blur-0">
+      {/* Left side links */}
+      <div className="hidden md:flex flex-col justify-center items-start gap-4">
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            onClick={() => handleClick(item.href)}
+            className={`relative text-sm font-medium tracking-wide transition-colors duration-300
+              ${activeButton === item.href
+                ? "text-hovertext font-semibold"
+                : "text-muted-foreground hover:text-hovertext"}
+            `}
+          >
+            <div className="group flex flex-row items-center gap-2 relative">
+              <span
+                className={`h-[2px] rounded transition-all duration-300
+                  ${activeButton === item.href
+                    ? "w-24 bg-hovertext h-[4px]"
+                    : "w-12 bg-muted-foreground group-hover:w-24 group-hover:bg-hovertext"}
+                `}
+              />
+              <h1
+                className={`transition-all duration-300
+                  ${activeButton === item.href ? "text-lg" : "group-hover:text-lg"}
+                `}
+              >
+                {item.name}
+              </h1>
             </div>
-        </nav>
-    );
+          </Link>
+        ))}
+      </div>
+
+      {/* Right side menu */}
+      <div className="flex items-center gap-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="outline"
+              aria-label="Open menu"
+              size="icon-sm"
+              className="md:hidden"
+            >
+              <MoreHorizontalIcon />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-48">
+            <DropdownMenuLabel>
+              <div className="flex justify-between items-center gap-2">
+                <WeatherWidget />
+                <ModeToggle />
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            {navItems.map((item) => (
+              <DropdownMenuItem key={item.href} asChild>
+                <Link
+                  href={item.href}
+                  onClick={() => handleClick(item.href)}
+                  className={`ml-4 ${activeButton === item.href ? "text-hovertext font-medium" : ""}`}
+                >
+                  {item.name}
+                </Link>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;

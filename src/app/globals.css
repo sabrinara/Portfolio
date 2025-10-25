@@ -74,7 +74,7 @@
   --primary-foreground: #dcedfe;
   --secondary-foreground: var(--primary);
   --muted: #f1f8fc;
-  --muted-foreground: #4c6c86;
+  --muted-foreground: #193145;
   --accent-foreground: var(--primary);
 
   --destructive: #dc2626;
@@ -119,7 +119,7 @@
   --primary-foreground: #011223;
   --secondary-foreground: var(--text);
   --muted: #132b2d;
-  --muted-foreground: #a7bfc8;
+  --muted-foreground: #cadce4;
   --accent-foreground: var(--text);
 
   --destructive: #f87171;
