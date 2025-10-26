@@ -51,10 +51,10 @@ const Achievement = () => {
 
     return (
         <section
-            className="scroll-mt-[100px] md:scroll-mt-[60px] my-6"
-            id="achievement"
+            className="scroll-mt-[100px] md:scroll-mt-[60px] my-4  md:mt-20"
+            id="achievements"
         >
-            <h1 className="md:hidden text-2xl font-medium text-text mt-6">
+          <h1 className="md:hidden text-2xl font-medium text-text my-4 text-center">
                 Achievements
             </h1>
 
@@ -78,12 +78,15 @@ const Achievement = () => {
 
                         {/* 📝 Details */}
                         <div className="w-3/4">
-                            <h2 className="text-[20px] font-semibold text-text">{ach.title}</h2>
+                        <div className="flex justify-between items-center mb-2">
+                            <h2 className="text-[20px] font-semibold text-hovertext">{ach.title}</h2>
 
                             {/* Type */}
-                            <p className="text-hovertext text-sm font-medium capitalize mb-1">
+                            <p className="text-hovertext text-sm font-medium capitalize mb-1 bg-secondary/10 px-2 py-1 rounded-full">
                                 {ach.type}
                             </p>
+                        </div>
+                            
 
                             {/* Date (optional if exists) */}
                             {ach.date && (
@@ -95,7 +98,7 @@ const Achievement = () => {
 
                             {/* Details text */}
                             {ach.details && (
-                                <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
+                                <p className="text-justify text-sm text-muted-foreground mb-3 line-clamp-3">
                                     {ach.details}
                                 </p>
                             )}
@@ -104,9 +107,8 @@ const Achievement = () => {
                 ))}
             </div>
 
-            {/* 🔗 View More Button */}
-            <div onClick={() => router.push("/achievements")} className="flex justify-end">
-                <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full cursor-pointer hover:text-hovertext hover:bg-secondary/10 transition-all duration-300 text-text">
+            <div onClick={() => router.push("/achievements")} className="flex justify-center md:justify-end mt-6">
+               <div className="inline-flex items-center gap-1 px-4 py-2 rounded-full cursor-pointer text-sm hover:text-text bg-secondary/10 transition-all duration-300 text-hovertext">
                     View all achievements <ArrowUpRight size={16} />
                 </div>
             </div>

@@ -20,4 +20,5 @@ export interface Project {
   date?: string; // ISO string
   createdAt?: string;
   updatedAt?: string;
+  featuredProject?: boolean;
 }

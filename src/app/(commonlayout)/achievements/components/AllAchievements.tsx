@@ -19,7 +19,7 @@ import "aos/dist/aos.css";
 
 const AllAchievements = () => {
     const [achievements, setAchievements] = useState<IAchievement[]>([]);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [selected, setSelected] = useState<IAchievement | null>(null);
 
@@ -35,10 +35,9 @@ const AllAchievements = () => {
 
         const fetchAchievements = async () => {
             try {
-                setLoading(true);
+                // setLoading(true);
                 const data = await getAchievements();
-
-                // 🧩 Sort by date (latest first)
+             
                 const sortedData = (data || []).sort((a, b) => {
                     const dateA = a.date ? new Date(a.date).getTime() : 0;
                     const dateB = b.date ? new Date(b.date).getTime() : 0;
@@ -52,15 +51,15 @@ const AllAchievements = () => {
                 console.error(err);
                 setError("Failed to fetch achievements.");
             } finally {
-                setLoading(false);
+                // setLoading(false);
             }
         };
 
         fetchAchievements();
     }, []);
 
-    if (loading)
-        return <p className="text-muted-foreground mt-4 text-center">Loading achievements...</p>;
+    // if (loading)
+    //     return <p className="text-muted-foreground mt-4 text-center">Loading achievements...</p>;
 
     if (error)
         return <p className="text-red-500 mt-4 text-center">{error}</p>;
@@ -71,7 +70,7 @@ const AllAchievements = () => {
             id="achievement"
         >
             <h1 className="text-3xl font-semibold text-center mb-8 text-text">
-                My <span className="text-secondary">Achievements</span>
+                My <span className="text-hovertext">Achievements</span>
             </h1>
 
             {/* 🧩 Achievements Grid */}
@@ -88,9 +87,8 @@ const AllAchievements = () => {
                             <Image
                                 src={ach.image}
                                 alt={ach.title}
-                                width={600}
-                                height={400}
-                                className="w-full h-auto rounded object-cover group-hover:scale-105 transition-transform duration-700"
+                                fill
+                                className="w-full h-56 rounded object-cover group-hover:scale-105 transition-transform duration-700"
                             />
                         )}
                         <div className="absolute bottom-0 w-full bg-black/60 text-white p-3 text-sm opacity-0 group-hover:opacity-100 transition-opacity">

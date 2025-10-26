@@ -29,7 +29,7 @@ const ScrollToTheTop: React.FC = () => {
           onClick={scrollToTop}
           className="
             fixed bottom-6 right-6 z-50
-            bg-primary text-primary-foreground
+            bg-text text-primary-foreground
             p-3 rounded-full shadow-lg
             hover:bg-primary/80 transition-all duration-300
             animate-fadeIn

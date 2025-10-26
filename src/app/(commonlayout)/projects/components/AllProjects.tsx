@@ -44,7 +44,9 @@ const AllProjects = () => {
 
     return (
         <section className="scroll-mt-[100px] md:scroll-mt-[60px] my-6" id="projects">
-            <h1 className="text-2xl font-medium text-hovertext mb-6 text-center">All Projects</h1>
+             <h1 className="text-3xl font-semibold text-center mb-8 text-text">
+                All <span className="text-hovertext">Projects</span>
+            </h1>
 
             <Table className="border rounded-lg overflow-hidden">
                 <TableHeader>
