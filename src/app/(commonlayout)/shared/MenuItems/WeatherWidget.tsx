@@ -1,7 +1,14 @@
 "use client";
 
 import { SetStateAction, useEffect, useState } from "react";
-import { Cloud, Sun, CloudRain, Snowflake, MapPin, Loader2 } from "lucide-react";
+import {
+  Cloud,
+  Sun,
+  CloudRain,
+  Snowflake,
+  MapPin,
+  Loader2,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +19,8 @@ import { Button } from "../../../../components/ui/button";
 import { Input } from "../../../../components/ui/input";
 
 const apiKey = "8dfc2c49504af46c2b3f2c9286a198c4";
-const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+const apiUrl =
+  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
 type WeatherData = {
   temp: number;
@@ -31,14 +39,16 @@ export default function WeatherWidget() {
     try {
       const res = await fetch(`${apiUrl}${cityName}&appid=${apiKey}`);
       const data = await res.json();
-      if (data.cod === 200) {
+      if (data.cod === 200 && data.main && data.weather && data.weather.length > 0) {
         setWeather({
           temp: data.main.temp,
           condition: data.weather[0].main,
         });
-        setDisplayCity(data.name);
+        setDisplayCity(data.name || "Unknown");
       } else {
-        console.error("City not found");
+        console.error("City not found or invalid data", data);
+        setWeather(null);
+        setDisplayCity("Unknown");
       }
     } catch (err) {
       console.error(err);
@@ -71,7 +81,6 @@ export default function WeatherWidget() {
         }
       },
       (err) => {
-        // 👇 Handle denied permission or errors gracefully
         console.error("Location access denied:", err);
         setWeather(null);
         setDisplayCity("Unknown");
@@ -84,41 +93,60 @@ export default function WeatherWidget() {
     getWeatherByLocation();
   }, []);
 
-  const getIcon = (condition: string) => {
+  const getIconAndMessage = (condition: string) => {
     switch (condition) {
       case "Clear":
-        return <Sun className="w-5 h-5" />;
+        return {
+          icon: <Sun className="w-5 h-5" />,
+          message: "Sunny Day",
+        };
       case "Rain":
       case "Drizzle":
-        return <CloudRain className="w-5 h-5" />;
+        return {
+          icon: <CloudRain className="w-5 h-5" />,
+          message: "Rainy Mood",
+        };
       case "Snow":
-        return <Snowflake className="w-5 h-5" />;
+        return {
+          icon: <Snowflake className="w-5 h-5" />,
+          message: "Snowy Time",
+        };
       case "Clouds":
-        return <Cloud className="w-5 h-5" />;
+        return {
+          icon: <Cloud className="w-5 h-5" />,
+          message: "Cloudy Skies",
+        };
       default:
-        return <Cloud className="w-5 h-5" />; 
+        return {
+          icon: <Cloud className="w-5 h-5" />,
+          message: "Unknown Weather",
+        };
     }
   };
+
+  const display = weather ? getIconAndMessage(weather.condition) : null;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="flex items-center gap-1">
+        <Button className="flex flex-col items-center gap-1 px-3 py-2 bg-transparent border border-text text-text rounded-md hover:opacity-90 hover:bg-secondary hover:text-buttontext transition">
           {loading ? (
             <Loader2 className="w-5 h-5 animate-spin" />
-          ) : weather ? (
+          ) : display ? (
             <>
-              {getIcon(weather.condition)}
-              <span>{Math.round(weather.temp)}°C</span>
+              <div className="flex justify-center items-center gap-2">  {display.icon}
+                <span className="text-sm">{Math.round(weather!.temp)}°C</span>
+                <span className="text-xs text-muted-foreground">
+                  {display.message}
+                </span></div>
             </>
           ) : (
-            <>
-              <Cloud className="w-5 h-5" /> 
-            </>
+            <Cloud className="w-5 h-5 text-gray-400" />
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-48 p-2">
+
+      <DropdownMenuContent className="w-52 p-2">
         <div className="flex flex-col gap-2">
           <Input
             placeholder="Search city..."
@@ -135,13 +163,10 @@ export default function WeatherWidget() {
           >
             Search
           </Button>
-          <DropdownMenuItem
-            onClick={getWeatherByLocation}
-            className="cursor-pointer"
-          >
+          <DropdownMenuItem onClick={getWeatherByLocation}>
             📍 Use My Location
           </DropdownMenuItem>
-          <div className="text-sm text-center md:text-start text-muted-foreground px-1">
+          <div className="text-sm text-center text-muted-foreground px-1">
             {displayCity}
           </div>
         </div>

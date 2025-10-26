@@ -59,11 +59,11 @@ const About = () => {
       )}
 
 
-        <div onClick={() => router.push("/about")} className="flex justify-center md:justify-end mt-6">
+        {/* <div onClick={() => router.push("/about")} className="flex justify-center md:justify-end mt-6">
                 <div className="inline-flex items-center gap-1 px-4 py-2 rounded-full cursor-pointer text-sm hover:text-text bg-secondary/10 transition-all duration-300 text-hovertext">
                     Get know more about me <ArrowUpRight size={16} />
                 </div>
-            </div>
+            </div> */}
     </section>
   );
 };
