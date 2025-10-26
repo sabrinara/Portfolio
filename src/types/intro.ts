@@ -11,6 +11,7 @@ export interface IIntro {
   smallDetails: string;
   image?: string;
   about_content?: string;
+  about_content_dark?: string;
   resume?: string;
   socialLinks: SocialLink[];
   createdAt?: string;

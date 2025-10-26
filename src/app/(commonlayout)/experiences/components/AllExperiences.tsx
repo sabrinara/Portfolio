@@ -4,10 +4,8 @@ import React, { useEffect, useState } from "react";
 import { getExperiences } from "@/services/experience";
 import { IExperience } from "@/types/experience";
 import { CalendarDays, Link as LinkIcon, FileText, ArrowUpRight } from "lucide-react";
-import { useRouter } from "next/navigation";
 
-const Experiences = () => {
-    const router = useRouter();
+const AllExperiences = () => {
     const [experiences, setExperiences] = useState<IExperience[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -45,18 +43,18 @@ const Experiences = () => {
         return bEnd.getTime() - aEnd.getTime();
     });
 
-      const displayedExperiences = sortedExperiences.slice(0, 3);
+
     return (
-        <section className="scroll-mt-[100px] md:scroll-mt-[60px] my-6 md:mt-20" id="experiences">
-            <h1 className="md:hidden text-2xl font-medium text-text my-4 text-center">
-               My Experiences
+        <section className="scroll-mt-[100px] md:scroll-mt-[60px] my-2" id="experiences">
+            <h1 className="md:hidden text-2xl font-medium text-text mt-6">
+                Experiences
             </h1>
 
             <div className="flex flex-col gap-6">
-                {displayedExperiences.map((exp) => (
+                {sortedExperiences.map((exp) => (
                     <div
                         key={exp._id}
-                        className="flex justify-between items-start rounded-2xl py-5 md:px-2 gap-4"
+                        className="flex justify-between items-start rounded-2xl py-5 md:px-2 hover:bg-card/20 gap-4"
                     >
                         <div className="hidden md:flex items-center gap-2 text-muted-foreground/80 text-sm font-bold whitespace-nowrap md:mt-1">
                             <CalendarDays size={16} />
@@ -97,7 +95,7 @@ const Experiences = () => {
                                 )}
                             </div>
 
-                            <p className="mt-3 text-base text-justify leading-relaxed text-muted-foreground">
+                            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
                                 {exp.about}
                             </p>
 
@@ -127,14 +125,8 @@ const Experiences = () => {
                     </div>
                 ))}
             </div>
-
-            <div onClick={() => router.push("/experiences")} className="flex justify-center md:justify-end mt-6">
-                 <div className="inline-flex items-center gap-1 px-4 py-2 rounded-full cursor-pointer text-sm hover:text-text bg-secondary/10 transition-all duration-300 text-hovertext">
-                    View my all experiences <ArrowUpRight size={16} />
-                </div>
-            </div>
         </section>
     );
 };
 
-export default Experiences;
+export default AllExperiences;

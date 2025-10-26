@@ -43,28 +43,28 @@ const Intro = () => {
   if (!introData) return null;
 
   return (
-    <div className="my-2 flex flex-col md:flex-row gap-6 items-start">
+    <div className="my-6 md:my-2 flex flex-col md:flex-row gap-6 items-start">
       <div>
-        <h1 className="text-5xl font-medium text-text">{introData.name}</h1>
-        <h2 className="text-xl text-foreground mt-2">{introData.role}</h2>
+        <h1 className="text-4xl font-medium text-text">{introData.name}</h1>
+        <h2 className="text-lg text-foreground mt-2">{introData.role}</h2>
 
-        <p className="my-4 text-muted-foreground max-w-2xl whitespace-pre-line"  dangerouslySetInnerHTML={{ __html: introData.smallDetails }}/>
+        <p className="my-2 text-muted-foreground max-w-2xl whitespace-pre-line text-sm"  dangerouslySetInnerHTML={{ __html: introData.smallDetails }}/>
 
    
 
         {/* Resume Button */}
         {introData.resume && (
           <Button
-            variant="secondary"
+          // variant="outline"
             asChild
-            className="inline-block mt-2 px-4 py-2 text-white rounded-md hover:opacity-90 transition"
+            className="inline-block bg-transparent border border-text mt-2 px-4 py-2 text-text rounded-md hover:opacity-90 hover:bg-secondary hover:text-buttontext transition"
           >
             <a
               href={introData.resume}
               target="_blank"
               rel="noopener noreferrer"
             >
-              View Resume
+              My Resume
             </a>
           </Button>
         )}

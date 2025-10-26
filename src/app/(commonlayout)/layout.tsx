@@ -1,32 +1,33 @@
+// src/app/(commonlayout)/layout.tsx
 import type { Metadata } from "next";
 import "../globals.css";
 import { ThemeProvider } from "./providers/theme-provider";
-
-
+import NavbarWrapper from "./shared/MenuItems/NavbarWrapper";
 
 export const metadata: Metadata = {
   title: "Sabrina Rashid",
-  description: "A Interactive and Informatic Portfolio for myself in next.js,shadcn ui, mongodb and a backend is available ",
+  description:
+    "An Interactive and Informative Portfolio built with Next.js, Shadcn UI, MongoDB, and a connected backend.",
 };
 
 export default function CommonLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-       
-      >
+      <body>
         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* ✅ Client-side wrapper handles pathname */}
+          <NavbarWrapper />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

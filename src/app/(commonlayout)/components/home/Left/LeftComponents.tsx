@@ -7,7 +7,7 @@ const LeftComponents = () => {
     return (
         <div className='w-full'>
             <Intro/>
-            <Navbar/>
+           <div className='hidden md:flex'> <Navbar/></div>
             <Social/>
         </div>
     );
