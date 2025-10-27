@@ -136,7 +136,7 @@ export default function WeatherWidget() {
             <>
               <div className="flex justify-center items-center gap-2">  {display.icon}
                 <span className="text-sm">{Math.round(weather!.temp)}°C</span>
-                <span className="text-xs text-muted-foreground">
+                <span className="hidden md:flex text-xs">
                   {display.message}
                 </span></div>
             </>
