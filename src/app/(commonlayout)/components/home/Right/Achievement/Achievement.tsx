@@ -68,8 +68,8 @@ const Achievement = () => {
           <motion.div
             key={ach._id}
             className="flex justify-between items-start gap-4 py-4"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.02 }}
@@ -112,7 +112,8 @@ const Achievement = () => {
               )}
 
               {/* Details text */}
-              {ach.details && (
+              {ach.details && ( <p className="text-justify text-sm text-muted-foreground mb-3 line-clamp-3"> {ach.details} </p> )}
+              {/* {ach.details && (
                 <motion.p
                   className="text-justify text-sm text-muted-foreground mb-3 line-clamp-3"
                   initial={{ opacity: 0, y: 10 }}
@@ -121,7 +122,7 @@ const Achievement = () => {
                 >
                   {ach.details}
                 </motion.p>
-              )}
+              )} */}
             </div>
           </motion.div>
         ))}
