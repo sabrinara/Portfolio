@@ -4,14 +4,22 @@ export interface KeyFeature {
   details?: string;
 }
 
+export interface Urls {
+  website: string;
+  frontend?: string | null;
+  backend?: string | null;
+}
+
 export type ProjectType = "company" | "team" | "personal";
+
+export type ProjectCategory = "Full Stack" | "Frontend" | "Backend" | "Django" | "MERN";
 
 export interface Project {
   _id?: string;
   title: string;
-  category: string;
   imageArray: string[];
   type: ProjectType;
+  category: ProjectCategory;
   technologyType?: string;
   subTitle?: string;
   description?: string;
@@ -21,4 +29,5 @@ export interface Project {
   createdAt?: string;
   updatedAt?: string;
   featuredProject?: boolean;
+  urls: Urls; // ✅ added this field
 }
