@@ -37,7 +37,7 @@ const AllAchievements = () => {
             try {
                 // setLoading(true);
                 const data = await getAchievements();
-             
+
                 const sortedData = (data || []).sort((a, b) => {
                     const dateA = a.date ? new Date(a.date).getTime() : 0;
                     const dateB = b.date ? new Date(b.date).getTime() : 0;
@@ -101,44 +101,54 @@ const AllAchievements = () => {
 
             {/* 🪄 Dialog (Modal) */}
             <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
-                <DialogContent className="max-w-xl">
+                <DialogContent className="max-w-xl max-h-[90vh] overflow-y-auto">
                     {selected && (
                         <>
                             <DialogHeader>
                                 <DialogTitle className="text-lg md:text-3xl font-semibold text-text">
                                     {selected.title}
                                 </DialogTitle>
-                                {selected.date && (
-                                    <div className="flex items-center gap-1 text-sm text-muted-foreground mt-1">
-                                        <CalendarDays size={14} />
-                                        <span>{new Date(selected.date).toLocaleDateString()}</span>
-                                    </div>
-                                )}
+                                <div className="flex justify-between">
+                                    {selected.date && (
+                                        <div className="flex items-center gap-1 text-sm text-muted-foreground mt-1 font-semibold">
+                                            <CalendarDays size={14} />
+                                            <span>{new Date(selected.date).toLocaleDateString()}</span>
+                                        </div>
+                                    )}
+                                    <p className="text-sm text-hovertext capitalize font-semibold">
+                                        {selected.type}
+                                    </p>
+                                </div>
+
                             </DialogHeader>
 
+                            {/* Scrollable image area */}
                             {selected.image && (
-                                <Image
-                                    src={selected.image}
-                                    alt={selected.title}
-                                    width={600}
-                                    height={400}
-                                    className="rounded my-3 object-cover"
-                                />
+                                <div className="my-3 rounded-lg overflow-hidden">
+                                    <div className="max-h-[60vh] overflow-y-auto flex justify-center">
+                                        <Image
+                                            src={selected.image}
+                                            alt={selected.title}
+                                            width={600}
+                                            height={400}
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                </div>
                             )}
 
-                            <DialogDescription>
-                                <div className="text-sm text-muted-foreground leading-relaxed">
+                            {/* ✅ FIXED: moved content OUTSIDE of DialogDescription */}
+                            <div className="space-y-2">
+                                <p className="text-sm text-muted-foreground leading-relaxed">
                                     {selected.details}
-                                </div>
-                                <div className="text-sm mt-2 font-medium text-hovertext capitalize">
-                                    Type: {selected.type}
-                                </div>
-                            </DialogDescription>
+                                </p>
 
+                            </div>
                         </>
                     )}
                 </DialogContent>
             </Dialog>
+
         </section>
     );
 };
