@@ -16,10 +16,11 @@ import {
 // 🪄 Import AOS
 import AOS from "aos";
 import "aos/dist/aos.css";
+import LoadingUI from "../../shared/Loading/LoadingUI";
 
 const AllAchievements = () => {
     const [achievements, setAchievements] = useState<IAchievement[]>([]);
-    // const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [selected, setSelected] = useState<IAchievement | null>(null);
 
@@ -35,7 +36,7 @@ const AllAchievements = () => {
 
         const fetchAchievements = async () => {
             try {
-                // setLoading(true);
+                setLoading(true);
                 const data = await getAchievements();
 
                 const sortedData = (data || []).sort((a, b) => {
@@ -51,16 +52,19 @@ const AllAchievements = () => {
                 console.error(err);
                 setError("Failed to fetch achievements.");
             } finally {
-                // setLoading(false);
+                setLoading(false);
             }
         };
 
         fetchAchievements();
     }, []);
 
-    // if (loading)
-    //     return <p className="text-muted-foreground mt-4 text-center">Loading achievements...</p>;
-
+    if (loading)
+        return (
+            <div>
+                <LoadingUI />
+            </div>
+        )
     if (error)
         return <p className="text-red-500 mt-4 text-center">{error}</p>;
 

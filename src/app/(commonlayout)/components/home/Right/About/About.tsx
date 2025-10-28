@@ -6,18 +6,19 @@ import { IIntro } from "@/types/intro";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
+import LoadingUI from "@/app/(commonlayout)/shared/Loading/LoadingUI";
 
 const About = () => {
   const router = useRouter();
   const [introData, setIntroData] = useState<IIntro | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  // const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { theme } = useTheme();
 
   useEffect(() => {
     const fetchIntro = async () => {
       try {
-        setLoading(true);
+        // setLoading(true);
         const data = await getIntro();
         if (data && data.length > 0) {
           setIntroData(data[0]);
@@ -26,15 +27,19 @@ const About = () => {
         setError("Failed to load intro data.");
         console.error(err);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
     fetchIntro();
   }, []);
 
-  if (loading)
-    return <p className="text-muted-foreground mt-4">Loading intro...</p>;
+//  if (loading)
+//         return (
+//             <div>
+//                 <LoadingUI />
+//             </div>
+//         )
   if (error) return <p className="text-red-500 mt-4">{error}</p>;
   if (!introData) return null;
 

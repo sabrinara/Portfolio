@@ -2,7 +2,7 @@
 "use client";
 import { Loader2 } from "lucide-react";
 
-export default function Loading() {
+export default function loading() {
   return (
     <div className="flex items-center justify-center h-screen bg-background">
       <div className="flex flex-col items-center gap-4">

@@ -15,6 +15,7 @@ import {
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
+import LoadingUI from "../../shared/Loading/LoadingUI";
 
 const AllProjects = () => {
     const [projects, setProjects] = useState<Project[]>([]);
@@ -39,7 +40,12 @@ const AllProjects = () => {
         fetchProjects();
     }, []);
 
-    if (loading) return <p className="text-muted-foreground mt-4">Loading projects...</p>;
+    if (loading)
+        return (
+            <div>
+                <LoadingUI />
+            </div>
+        )
     if (error) return <p className="text-red-500 mt-4">{error}</p>;
 
     return (

@@ -6,32 +6,37 @@ import { IExperience } from "@/types/experience";
 import { CalendarDays, ArrowUpRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import LoadingUI from "@/app/(commonlayout)/shared/Loading/LoadingUI";
 
 const Experiences = () => {
   const router = useRouter();
   const [experiences, setExperiences] = useState<IExperience[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  // const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
-        setLoading(true);
+        // setLoading(true);
         const data = await getExperiences();
         setExperiences(data);
       } catch (err) {
         console.error(err);
         setError("Failed to load experiences.");
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
     fetchExperiences();
   }, []);
 
-  if (loading)
-    return <p className="text-muted-foreground mt-4 text-center">Loading experiences...</p>;
+//  if (loading)
+//         return (
+//             <div>
+//                 <LoadingUI />
+//             </div>
+//         )
   if (error)
     return <p className="text-red-500 mt-4 text-center">{error}</p>;
   if (!experiences.length)

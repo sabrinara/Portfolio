@@ -8,6 +8,7 @@ import Image from "next/image";
 import LeftSideScroll from "./LeftSideScroll";
 import ProjectUrls from "./ProjectUrls";
 import Link from "next/link";
+import LoadingUI from "@/app/(commonlayout)/shared/Loading/LoadingUI";
 const Aprojects = () => {
   const params = useParams();
   const id = params?.id as string | undefined;
@@ -32,7 +33,12 @@ const Aprojects = () => {
     fetchProject();
   }, [id]);
 
-  if (loading) return <p className="mt-4 text-muted-foreground text-center">Loading...</p>;
+  if (loading)
+    return (
+      <div>
+        <LoadingUI />
+      </div>
+    )
   if (!project) return <p className="mt-4 text-red-500 text-center">Project not found</p>;
 
   const sections = [
@@ -44,7 +50,7 @@ const Aprojects = () => {
 
   return (
     <section className="md:w-[1120px] mx-auto md:py-10 md:gap-10 relative">
-       <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
+      <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
       {project.imageArray && project.imageArray.length > 0 && (
         <div className="relative w-full h-48 md:h-[500px] mb-6">
           {project.urls?.website ? (
@@ -86,7 +92,7 @@ const Aprojects = () => {
 
         {/* Main Content */}
         <div className="flex-1">
-         
+
 
           {project.imageArray && project.imageArray.length > 0 && (
             <div className="relative w-full h-64 mb-6">

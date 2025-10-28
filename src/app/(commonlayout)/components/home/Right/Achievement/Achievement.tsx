@@ -10,14 +10,14 @@ import { IAchievement } from "@/types/achievement";
 
 const Achievement = () => {
   const [achievements, setAchievements] = useState<IAchievement[]>([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const fetchAchievements = async () => {
       try {
-        setLoading(true);
+        // setLoading(true);
         const data = await getAchievements();
 
         const sortedData = (data || []).sort((a, b) => {
@@ -31,19 +31,19 @@ const Achievement = () => {
         console.error(err);
         setError("Failed to fetch achievements.");
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
     fetchAchievements();
   }, []);
 
-  if (loading)
-    return (
-      <p className="text-muted-foreground mt-4 text-center">
-        Loading achievements...
-      </p>
-    );
+  // if (loading)
+  //   return (
+  //     <p className="text-muted-foreground mt-4 text-center">
+  //       Loading achievements...
+  //     </p>
+  //   );
 
   if (error)
     return (

@@ -7,17 +7,18 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import LoadingUI from "@/app/(commonlayout)/shared/Loading/LoadingUI";
 
 const Projects = () => {
   const router = useRouter();
   const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        setLoading(true);
+        // setLoading(true);
         const data = await getProjects();
         // ✅ Only keep featured projects
         const featured = data.filter((p: Project) => p.featuredProject === true);
@@ -26,15 +27,19 @@ const Projects = () => {
         console.error(err);
         setError("Failed to fetch projects.");
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
     fetchProjects();
   }, []);
 
-  if (loading)
-    return <p className="text-muted-foreground mt-4 text-center">Loading projects...</p>;
+  // if (loading)
+  //       return (
+  //           <div>
+  //               <LoadingUI />
+  //           </div>
+  //       )
   if (error)
     return <p className="text-red-500 mt-4 text-center">{error}</p>;
   if (projects.length === 0)

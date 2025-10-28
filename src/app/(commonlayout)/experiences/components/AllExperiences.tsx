@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { getExperiences } from "@/services/experience";
 import { IExperience } from "@/types/experience";
 import { CalendarDays, Link as LinkIcon, FileText, ArrowUpRight } from "lucide-react";
+import LoadingUI from "../../shared/Loading/LoadingUI";
 
 const AllExperiences = () => {
     const [experiences, setExperiences] = useState<IExperience[]>([]);
@@ -27,7 +28,12 @@ const AllExperiences = () => {
         fetchExperiences();
     }, []);
 
-    if (loading) return <p className="text-muted-foreground mt-4">Loading experiences...</p>;
+  if (loading)
+        return (
+            <div>
+                <LoadingUI />
+            </div>
+        )
     if (error) return <p className="text-red-500 mt-4">{error}</p>;
     if (!experiences.length) return <p>No experiences found.</p>;
 
@@ -46,8 +52,8 @@ const AllExperiences = () => {
 
     return (
         <section className="scroll-mt-[100px] md:scroll-mt-[60px] my-2" id="experiences">
-            <h1 className="md:hidden text-2xl font-medium text-text mt-6">
-                Experiences
+              <h1 className="text-3xl font-semibold text-center mb-8 text-text">
+                My <span className="text-hovertext">Experiences</span>
             </h1>
 
             <div className="flex flex-col gap-6">
