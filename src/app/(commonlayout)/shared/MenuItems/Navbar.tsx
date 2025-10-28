@@ -58,7 +58,7 @@ useEffect(() => {
     const elapsed = now - (lastManualNavRef.current || 0);
     const allowScrollOverride = elapsed > SCROLL_OVERRIDE_MS;
 
-    const offset = 100;
+    const offset = 160;
     let currentId: string | null = null;
 
     sections.forEach((section) => {
