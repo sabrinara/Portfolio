@@ -5,6 +5,7 @@ import { getIntro } from "@/services/intro";
 import { IIntro } from "@/types/intro";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Twitter, Globe, MailCheck } from "lucide-react"; // ✅ Lucide icons
+import LoadingUI from "@/app/(commonlayout)/shared/Loading/LoadingUI";
 
 const iconMap: Record<string, React.ElementType> = {
   Github: Github,
@@ -16,13 +17,13 @@ const iconMap: Record<string, React.ElementType> = {
 
 const Social = () => {
   const [introData, setIntroData] = useState<IIntro | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  // const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchIntro = async () => {
       try {
-        setLoading(true);
+        // setLoading(true);
         const data = await getIntro();
         if (data && data.length > 0) {
           setIntroData(data[0]);
@@ -31,14 +32,19 @@ const Social = () => {
         setError("Failed to load intro data.");
         console.error(err);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
     fetchIntro();
   }, []);
 
-  if (loading) return <p className="text-muted-foreground mt-4">Loading intro...</p>;
+  //  if (loading)
+  //       return (
+  //           <div>
+  //               <LoadingUI />
+  //           </div>
+  //       )
   if (error) return <p className="text-red-500 mt-4">{error}</p>;
   if (!introData) return null;
   return (

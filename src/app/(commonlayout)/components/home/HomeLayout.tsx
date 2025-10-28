@@ -4,6 +4,7 @@ import RightComponents from './Right/RightComponents';
 import WeatherWidget from '../../shared/MenuItems/WeatherWidget';
 import { ModeToggle } from '../../shared/MenuItems/ModeToggle';
 import MobileNavbar from '../../shared/MenuItems/MobileNavbar';
+import TimeGreeting from '../../shared/MenuItems/TimeGreeting';
 
 
 const HomeLayout = () => {
@@ -12,7 +13,8 @@ const HomeLayout = () => {
             <div className='flex md:hidden sticky top-0'>
                 <MobileNavbar/>
             </div>
-            <div className='hidden md:flex justify-end items-end gap-2 '>
+            <div className='hidden md:flex justify-end items-center gap-2 '>
+                <TimeGreeting/>
                 <WeatherWidget />
                 <ModeToggle />
             </div>

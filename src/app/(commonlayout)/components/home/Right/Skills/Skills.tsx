@@ -1,3 +1,5 @@
+"use client";
+
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { motion } from "framer-motion";
 
@@ -39,19 +41,42 @@ const Skills = () => {
     { id: 28, icon: "ant-design:ant-design-outlined", name: "Ant Design" },
   ];
 
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.07 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
     <section
       id="skills"
       className="scroll-mt-[100px] md:scroll-mt-[60px] my-8 md:mt-16"
     >
-          <h1 className="md:hidden text-2xl font-medium text-text my-10 text-center">
-               Skills
-            </h1>
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-8 justify-items-center">
+      <h1 className="md:hidden text-2xl font-medium text-text my-10 text-center">
+        Skills
+      </h1>
+
+      {/* Animated Skill Grid */}
+      <motion.div
+        className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-8 justify-items-center"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         {skills.map((skill) => (
           <motion.div
             key={skill.id}
-            whileHover={{ scale: 1.2, transition: { duration: 0.5 } }}
+            variants={itemVariants}
+            whileHover={{ scale: 1.2, transition: { duration: 0.3 } }}
             whileTap={{ scale: 1 }}
             className="flex flex-col items-center"
           >
@@ -61,10 +86,12 @@ const Skills = () => {
               height="30"
               className="ease-in-out duration-300"
             />
-            <h3 className="text-hovertext mt-2 text-xs md:text-sm">{skill.name}</h3>
+            <h3 className="text-hovertext mt-2 text-xs md:text-sm">
+              {skill.name}
+            </h3>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

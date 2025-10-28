@@ -3,7 +3,7 @@ import Aprojects from './projects/Aprojects';
 
 const ProjectDetailsPage = () => {
     return (
-        <div>
+        <div className='px-2'>
             <Aprojects/>
         </div>
     );
