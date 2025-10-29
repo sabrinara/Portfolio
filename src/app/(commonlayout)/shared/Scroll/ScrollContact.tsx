@@ -21,13 +21,14 @@ const ScrollContact: React.FC = () => {
 
   // Navigate to contact page
   const goToContact = () => {
-    router.push("/contactme");
+    router.push("/contact-me");
   };
 
   return (
     <>
       {isVisible && (
         <button
+          title="Feel free to reach out!"
           onClick={goToContact}
           className="
             fixed bottom-20 right-6 z-50
