@@ -9,6 +9,8 @@ import LeftSideScroll from "./LeftSideScroll";
 import ProjectUrls from "./ProjectUrls";
 import Link from "next/link";
 import LoadingUI from "@/app/(commonlayout)/shared/Loading/LoadingUI";
+import { CalendarClock, MonitorCog, RotateCcwKey } from "lucide-react";
+import TechFeaDate from "./TechFeaDate";
 const Aprojects = () => {
   const params = useParams();
   const id = params?.id as string | undefined;
@@ -47,9 +49,15 @@ const Aprojects = () => {
     { id: "technologies", label: "Technologies" },
     // { id: "urls", label: "Project Links" },
   ];
-
+  console.log("Project data):", project);
   return (
     <section className="md:w-[1120px] mx-auto md:py-10 md:gap-10 relative">
+      <TechFeaDate
+        date={project.date}
+        totalTechnologyCount={project.totalTechnologyCount}
+        totalKeyFeaturesCount={project.totalKeyFeaturesCount}
+      />
+
       <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
       {project.imageArray && project.imageArray.length > 0 && (
         <div className="relative w-full h-48 md:h-[500px] mb-6">
