@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ScreenShare } from "lucide-react";
 
 interface UrlItem {
   website?: string | null;
@@ -21,8 +21,6 @@ const ProjectUrls: React.FC<UrlsProps> = ({ urls }) => {
 
   if (!urlData) return null;
 
-  console.log("Project URLs (parsed):", urlData);
-
   return (
     <section className="hidden md:block w-56 sticky top-8 h-fit bg-secondary/10 rounded-xl p-6">
       <h2 className="text-xl font-semibold mb-2">Project Links</h2>
@@ -35,9 +33,9 @@ const ProjectUrls: React.FC<UrlsProps> = ({ urls }) => {
                 href={urlData.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex justify-center items-center gap-2 text-background bg-text hover:bg-hovertext hover:text-primary text-xs transition  py-2 rounded-sm"
+                className="flex justify-center items-center gap-1 text-background bg-text hover:bg-hovertext hover:text-primary text-xs transition  py-2 rounded-sm"
               >
-                <ExternalLink size={18} /> Live Website
+                <ScreenShare size={16} /> Live Website
               </a>
             )}
          <div className="flex items-center gap-1">
@@ -46,9 +44,9 @@ const ProjectUrls: React.FC<UrlsProps> = ({ urls }) => {
                 href={urlData.frontend}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex justify-center items-center gap-2 w-full text-background bg-text hover:bg-hovertext hover:text-primary text-xs transition  py-2 rounded-sm"
+                className="flex justify-center items-center gap-1 w-full text-background bg-text hover:bg-hovertext hover:text-primary text-xs transition  py-2 rounded-sm"
               >
-                <Github size={18} /> Frontend 
+                <Github size={16} />Frontend 
               </a>
             )}
             {urlData?.backend && (
@@ -56,9 +54,9 @@ const ProjectUrls: React.FC<UrlsProps> = ({ urls }) => {
                 href={urlData.backend}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex justify-center items-center gap-2 w-full text-background bg-text hover:bg-hovertext hover:text-primary text-xs transition  py-2 rounded-sm"
+                className="flex justify-center items-center gap-1 w-full text-background bg-text hover:bg-hovertext hover:text-primary text-xs transition  py-2 rounded-sm"
               >
-                <Github size={18} /> Backend 
+                <Github size={16} /> Backend 
               </a>
             )}
          </div>
