@@ -1,21 +1,33 @@
 import nodemailer from "nodemailer";
 import { RateLimiterMemory } from "rate-limiter-flexible";
+import dns from "dns/promises";
 
-export const runtime = "nodejs"; // ensure Next.js uses Node runtime even under Bun
+export const runtime = "nodejs";
 
-// 🕐 In-memory rate limiter — 3 requests per IP per 10 minutes
 const rateLimiter = new RateLimiterMemory({
-  points: 3,
-  duration: 600, // 10 minutes
+  points: 3, // Max 3 requests
+  duration: 600, // per 10 minutes
 });
+
+// ✅ Lightweight email validator (regex + MX lookup)
+async function isEmailValid(email: string): Promise<boolean> {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!regex.test(email)) return false;
+
+  const domain = email.split("@")[1];
+  try {
+    const records = await dns.resolveMx(domain);
+    return records && records.length > 0;
+  } catch {
+    return false;
+  }
+}
 
 export async function POST(req: Request): Promise<Response> {
   try {
-    // ✅ Parse body
     const body = await req.json();
     const { fullName, email, subject, message } = body;
 
-    // 🔒 Validate inputs
     if (!fullName || !email || !subject || !message) {
       return new Response(
         JSON.stringify({ success: false, message: "All fields are required." }),
@@ -23,25 +35,23 @@ export async function POST(req: Request): Promise<Response> {
       );
     }
 
-    // 🧠 Get IP for rate limiting
-    const ip =
-      req.headers.get("x-forwarded-for") ||
-      req.headers.get("x-real-ip") ||
-      "unknown";
-
-    try {
-      await rateLimiter.consume(ip); // throws if exceeded
-    } catch {
+    // ✅ Validate email (syntax + MX)
+    const valid = await isEmailValid(email);
+    if (!valid) {
       return new Response(
-        JSON.stringify({
-          success: false,
-          message: "Too many requests. Please wait before trying again.",
-        }),
-        { status: 429 }
+        JSON.stringify({ success: false, message: "Invalid email address or domain." }),
+        { status: 400 }
       );
     }
 
-    // ✉️ Setup Gmail transporter
+    // ✅ Rate limit by IP
+    const ip =
+      req.headers.get("x-forwarded-for") ||
+      req.headers.get("x-real-ip") ||
+      "anonymous";
+    await rateLimiter.consume(ip);
+
+    // ✅ Create secure transporter
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -50,53 +60,44 @@ export async function POST(req: Request): Promise<Response> {
       },
     });
 
-    // ✅ Email to YOU (site owner)
+    // Owner mail
     const ownerMail = {
       from: `"${fullName}" <${email}>`,
       to: process.env.GMAIL_USER,
       subject: `New Contact Form: ${subject}`,
       html: `
-        <h3>A New Mail from SABRINA_RASHID Website</h3>
+        <h3>New message from your portfolio website</h3>
         <p><strong>Name:</strong> ${fullName}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
         <p>${message}</p>
       `,
     };
 
-    // ✅ Confirmation email to user
+    // Confirmation mail
     const confirmationMail = {
-      from: `"${process.env.SITE_NAME || "SABRINA_RASHID"}" <${
-        process.env.GMAIL_USER
-      }>`,
+      from: `"${process.env.SITE_NAME || "Portfolio"}" <${process.env.GMAIL_USER}>`,
       to: email,
-      subject: "Thanks for contacting us!",
+      subject: "Thank you for your message!",
       html: `
-        <h3>Hello ${fullName},</h3>
-        <p>Thanks for reaching out. I’ve received your message and will get back to you shortly.</p>
-        <br/>
-        <p><strong>Your message:</strong></p>
-        <p>${message}</p>
-        <br/>
-        <p>Best regards,<br/>${
-          process.env.SITE_NAME || "SABRINA_RASHID "
-        } Team</p>
+        <p>Hi ${fullName},</p>
+        <p>Thanks for reaching out! I’ve received your message and will reply soon.</p>
+        <hr/>
+        <p><strong>Your message:</strong><br/>${message}</p>
       `,
     };
 
-    // 🚀 Send both emails
     await transporter.sendMail(ownerMail);
     await transporter.sendMail(confirmationMail);
 
     return new Response(
-      JSON.stringify({ success: true, message: "Emails sent successfully" }),
+      JSON.stringify({ success: true, message: "Message sent successfully." }),
       { status: 200 }
     );
-  } catch (error) {
-    console.error("❌ Error sending email:", error);
+  } catch (err: any) {
+    console.error("❌ Error in contact API:", err);
     return new Response(
-      JSON.stringify({ success: false, message: "Failed to send email" }),
+      JSON.stringify({ success: false, message: "Failed to send message." }),
       { status: 500 }
     );
   }
