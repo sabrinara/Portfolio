@@ -16,6 +16,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { useRouter } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import LoadingUI from "../../shared/Loading/LoadingUI";
+import Link from "next/link";
 
 const AllProjects = () => {
     const [projects, setProjects] = useState<Project[]>([]);
@@ -50,7 +51,7 @@ const AllProjects = () => {
 
     return (
         <section className="scroll-mt-[100px] md:scroll-mt-[60px] my-6" id="projects">
-             <h1 className="text-3xl font-semibold text-center mb-8 text-text">
+            <h1 className="text-3xl font-semibold text-center mb-8 text-text">
                 All <span className="text-hovertext">Projects</span>
             </h1>
 
@@ -71,6 +72,7 @@ const AllProjects = () => {
                         <TableRow
                             key={project._id}
                             className="cursor-pointer hover:bg-muted/50 transition"
+                            onClick={() => router.push(`/projects/${project._id}`)}
 
                         >
                             <TableCell>
@@ -112,7 +114,24 @@ const AllProjects = () => {
                                 )}
                             </TableCell>
                             <TableCell className="">{project.type}</TableCell>
-                            <TableCell className="text-hovertext text-xs" onClick={() => router.push(`/projects/${project._id}`)}><div className="flex items-center bg-secondary/10 py-1 px-2 rounded-full hover:bg-hovertext/10">View <ArrowUpRight size={14} /></div> </TableCell>
+                            <TableCell className="text-hovertext text-xs">
+                                {project.urls && project.urls.length > 0 && project.urls[0]?.website ? (
+                                    <Link
+                                        href={project.urls[0]?.website || "#"}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <div className="flex items-center bg-secondary/10 py-1 px-2 rounded-full hover:bg-hovertext/10">
+                                            Visit <ArrowUpRight size={14} />
+                                        </div>
+                                    </Link>
+
+                                ) : (
+                                    <span className="text-secondary italic">No link</span>
+                                )}
+                            </TableCell>
+
+
                         </TableRow>
                     ))}
                 </TableBody>
