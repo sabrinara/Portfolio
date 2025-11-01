@@ -1,3 +1,5 @@
+import { Project } from "./projects";
+
 export type IExperienceType = "company" | "team" | "course";
 
 export interface IExperience {
@@ -11,7 +13,7 @@ export interface IExperience {
   technologies: string[];
   certificateUrl?: string;
   url?: string;
-  projects?: string[]; // IDs referencing Project documents
+  projects?: Project[];
   resumeUrl?: string;
   createdAt?: string;
   updatedAt?: string;

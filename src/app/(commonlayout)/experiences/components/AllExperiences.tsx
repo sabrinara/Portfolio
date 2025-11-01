@@ -6,6 +6,8 @@ import { IExperience } from "@/types/experience";
 import { CalendarDays, ArrowUpRight } from "lucide-react";
 import LoadingUI from "../../shared/Loading/LoadingUI";
 import ExperienceProjects from "./ExperienceProjects"; // ✅ Import the new component
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const AllExperiences = () => {
   const [experiences, setExperiences] = useState<IExperience[]>([]);
@@ -63,7 +65,7 @@ const AllExperiences = () => {
         {sortedExperiences.map((exp) => (
           <div
             key={exp._id}
-            className="flex flex-col gap-4 rounded-2xl py-6 md:px-3 hover:bg-card/20 transition-all duration-300"
+            className="flex flex-col gap-4 rounded-2xl py-6 md:px-10 hover:bg-card/20 transition-all duration-300 border"
           >
             {/* Date (Desktop) */}
             <div className="hidden md:flex items-center gap-2 text-muted-foreground/80 text-sm font-bold whitespace-nowrap md:mt-1">
@@ -74,7 +76,7 @@ const AllExperiences = () => {
                   : "N/A"}{" "}
                 –{" "}
                 {exp.endDate &&
-                exp.endDate.toLowerCase() !== "present"
+                  exp.endDate.toLowerCase() !== "present"
                   ? new Date(exp.endDate).toLocaleDateString()
                   : "Present"}
               </span>
@@ -89,7 +91,7 @@ const AllExperiences = () => {
                     href={exp.certificateUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-xl font-bold text-text"
+                    className="flex items-center gap-1 text-2xl font-bold text-text"
                     title="Click to view certificate"
                   >
                     {exp.title}
@@ -120,26 +122,30 @@ const AllExperiences = () => {
               {/* Technologies */}
               {exp.technologies?.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-4">
-                  {exp.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                 <h4 className="text-[14px] md:text-lg font-semibold text-text mb-2">
+                    Technologies-
+                  </h4>
+                  <div className="">
+                    {exp.technologies.map((tech, index) => (
+                      <span
+                        key={index}
+                        className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm mx-1"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               )}
 
               {/* Related Projects Section */}
               {exp.projects && exp.projects.length > 0 && (
                 <div className="mt-6">
-                  <h4 className="text-lg font-semibold text-text mb-2">
-                    Related Projects:
-                  </h4>
-                  <ExperienceProjects projectIds={exp.projects} />
+                      <h4 className="text-[14px] md:text-lg font-semibold text-text mb-2">Projects-</h4>
+                  <ExperienceProjects projects={exp.projects} />
                 </div>
               )}
+
 
               {/* Date (Mobile) */}
               <div className="flex md:hidden items-center gap-2 text-muted-foreground text-sm font-bold whitespace-nowrap mt-4">
@@ -150,7 +156,7 @@ const AllExperiences = () => {
                     : "N/A"}{" "}
                   –{" "}
                   {exp.endDate &&
-                  exp.endDate.toLowerCase() !== "present"
+                    exp.endDate.toLowerCase() !== "present"
                     ? new Date(exp.endDate).toLocaleDateString()
                     : "Present"}
                 </span>
