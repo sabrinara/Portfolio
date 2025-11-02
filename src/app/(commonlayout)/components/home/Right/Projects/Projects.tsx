@@ -56,7 +56,7 @@ const Projects = () => {
         Featured Projects
       </h1>
 
-      <div className="space-y-8">
+      <div className="space-y-8" >
         {displayedProjects.map((project, index) => (
           <motion.div
             key={project._id}
@@ -79,19 +79,24 @@ const Projects = () => {
                   alt={project.title}
                   fill
                   className="object-cover object-top rounded-sm transition-all duration-[6s] ease-in-out hover:object-bottom"
-                />
+                onClick={() => router.push(`/projects/${project._id}`)}/>
               </motion.div>
             )}
 
             {/* 📋 Details */}
-            <div className="w-3/4">
+            <div className="w-3/4" onClick={() => router.push(`/projects/${project._id}`)}>
               <div className="flex justify-between items-center mb-2">
                 <h2 className="text-[20px] font-semibold text-hovertext">
                   {project.title}
                 </h2>
+                   {project.subTitle && ( 
+                    <p className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm transition-colors duration-200">
+                      {project.subTitle}
+                    </p> 
+                  )}
               </div>
 
-              {project.subTitle && ( <p className="text-muted-foreground text-sm mb-2">{project.subTitle}</p> )}
+           
 
               {project.description && (
                 <p className="text-sm text-justify text-muted-foreground mb-3 line-clamp-3"> {project.description}
@@ -99,11 +104,23 @@ const Projects = () => {
                 </p>
               )}
 
-              {project.technologies.map((tech) => (
-                <span key={tech}
-                  className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm" >
-                  {tech}
-                </span>))}
+             {project.technologies?.length > 0 && (
+                          <motion.div
+                            className="flex flex-wrap gap-2 mt-4"
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                          >
+                            {project.technologies.map((tech, index) => (
+                              <span
+                                key={index}
+                                className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm transition-colors duration-200"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </motion.div>
+                        )}
             </div>
           </motion.div>
         ))}

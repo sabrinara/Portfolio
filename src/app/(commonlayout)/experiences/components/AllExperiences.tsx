@@ -65,7 +65,7 @@ const AllExperiences = () => {
         {sortedExperiences.map((exp) => (
           <div
             key={exp._id}
-            className="flex flex-col gap-4 rounded-2xl py-6 md:px-10 hover:bg-card/20 transition-all duration-300 border"
+            className="flex flex-col gap-4 rounded-2xl py-6 md:p-10 hover:bg-card/20 transition-all duration-300 border"
           >
             {/* Date (Desktop) */}
             <div className="hidden md:flex items-center gap-2 text-muted-foreground/80 text-sm font-bold whitespace-nowrap md:mt-1">

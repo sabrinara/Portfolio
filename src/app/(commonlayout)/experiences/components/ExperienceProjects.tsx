@@ -14,7 +14,7 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
     return <p className="text-muted-foreground">No projects found in this experience.</p>;
 
   return (
-    <section className="mt-6">
+    <section className="mt-4">
       {/* <h1 className="text-2xl font-semibold text-center mb-6 text-text">
         Experience <span className="text-hovertext">Projects</span>
       </h1> */}
@@ -37,7 +37,7 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
                   src={project.imageArray[0]}
                   alt={project.title}
                   fill
-                  className="object-cover object-top transition-all duration-[5s] ease-in-out hover:object-bottom"
+                  className="object-cover object-top transition-all duration-[5s] ease-in-out hover:object-bottom rounded-2xl"
                 />
               </Link>
             )}
