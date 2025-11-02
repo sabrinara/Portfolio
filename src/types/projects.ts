@@ -29,7 +29,7 @@ export interface Project {
   createdAt?: string;
   updatedAt?: string;
   featuredProject?: boolean;
-  urls: Urls;
+  urls: Urls[];
   totalKeyFeaturesCount: number;
   totalTechnologyCount:number;
 }
