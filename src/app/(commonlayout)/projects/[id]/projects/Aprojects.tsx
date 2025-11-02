@@ -9,8 +9,8 @@ import LeftSideScroll from "./LeftSideScroll";
 import ProjectUrls from "./ProjectUrls";
 import Link from "next/link";
 import LoadingUI from "@/app/(commonlayout)/shared/Loading/LoadingUI";
-import { CalendarClock, MonitorCog, RotateCcwKey } from "lucide-react";
 import TechFeaDate from "./TechFeaDate";
+
 const Aprojects = () => {
   const params = useParams();
   const id = params?.id as string | undefined;
@@ -40,35 +40,42 @@ const Aprojects = () => {
       <div>
         <LoadingUI />
       </div>
-    )
-  if (!project) return <p className="mt-4 text-red-500 text-center">Project not found</p>;
+    );
+
+  if (!project)
+    return <p className="mt-4 text-red-500 text-center">Project not found</p>;
 
   const sections = [
     { id: "overview", label: "Overview" },
     { id: "keyFeatures", label: "Key Features" },
     { id: "technologies", label: "Technologies" },
-    // { id: "urls", label: "Project Links" },
   ];
+
   console.log("Project data):", project);
+
   return (
     <section className="md:w-[1120px] mx-auto md:py-10 md:gap-10 relative">
+      {/* Top Summary */}
       <TechFeaDate
         date={project.date}
         totalTechnologyCount={project.totalTechnologyCount}
         totalKeyFeaturesCount={project.totalKeyFeaturesCount}
       />
 
+      {/* Title */}
       <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
+
+      {/* Main Project Image */}
       {project.imageArray && project.imageArray.length > 0 && (
         <div className="relative w-full h-48 md:h-[500px] mb-6">
-          {project.urls?.website ? (
+          {project.urls[0]?.website ? (
             <Link
-              href={project.urls.website}
+              href={project.urls[0].website}
               target="_blank"
               rel="noopener noreferrer"
             >
               <Image
-                src={project.imageArray?.[0]}
+                src={project.imageArray[0]}
                 alt={project.title}
                 fill
                 className="object-cover object-top rounded-sm transition-all duration-[10s] ease-in-out hover:object-bottom"
@@ -76,66 +83,53 @@ const Aprojects = () => {
             </Link>
           ) : (
             <Image
-              src={project.imageArray?.[0]}
+              src={project.imageArray[0]}
               alt={project.title}
               fill
               className="object-cover object-top rounded-sm transition-all duration-[10s] ease-in-out hover:object-bottom"
             />
           )}
-
         </div>
       )}
-      <div className="md:flex  gap-10 py-2 md:py-10">
+
+      <div className="md:flex gap-10 py-2 md:py-10">
+        {/* Left Side Sticky Content */}
         <div className="flex flex-col gap-6">
-          {/* URLs Section */}
           <div className="sticky top-24">
             <ProjectUrls urls={project.urls} />
           </div>
 
-          {/* Left Floating Navigation */}
           <div className="sticky top-80">
             <LeftSideScroll sections={sections} />
           </div>
         </div>
 
-        {/* Main Content */}
+        {/* Right Side Main Content */}
         <div className="flex-1">
-
-
-          {project.imageArray && project.imageArray.length > 0 && (
-            <div className="relative w-full h-64 mb-6">
-              <Image
-                src={project.imageArray[0]}
-                alt={project.title}
-                fill
-                className="rounded-lg object-cover"
-              />
-            </div>
-          )}
-
-          {/* Overview */}
+          {/* Overview Section */}
           <section id="overview" className="mb-10 scroll-mt-24">
-            <h2 className="text-2xl font-semibold mb-2">About This Project</h2>
-            <p className="text-base text-muted-foreground leading-relaxed">
+            <h2 className="text-xl md:text-3xl font-semibold mb-2">
+              Overview of the Project
+            </h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
               {project.description}
             </p>
           </section>
 
-          {/* Key Features */}
+          {/* Key Features Summary List */}
           {project.keyFeatures?.length > 0 && (
             <section id="keyFeatures" className="mb-10 scroll-mt-20">
-              <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
-              <ul className="space-y-3">
+              <h2 className="text-xl md:text-3xl font-semibold mb-4">
+                Key Features
+              </h2>
+              <ul className="list-disc pl-6 space-y-2">
                 {project.keyFeatures.map((feature, index) => (
-                  <li
-                    key={index}
-                    className="p-3 border border-border rounded-lg hover:bg-secondary/10 transition cursor-pointer"
-                  >
+                  <li key={index} id={`feature-${index + 1}`}>
                     <a
                       href={`#feature-${index + 1}`}
-                      className="text-hovertext hover:text-primary"
+                      className="text-text hover:text-hovertext transition"
                     >
-                      ✅ {feature.title || `Feature ${index + 1}`}
+                      {feature.title || `Feature ${index + 1}`}
                     </a>
                   </li>
                 ))}
@@ -144,35 +138,48 @@ const Aprojects = () => {
           )}
 
           {/* Individual Feature Details */}
-          {project.keyFeatures?.map((feature, index) => (
-            <section
-              key={index}
-              id={`feature-${index + 1}`}
-              className="mb-10 scroll-mt-24 border-t border-border pt-6"
-            >
-              <h3 className="text-xl font-semibold mb-2">
-                {feature.title || `Feature ${index + 1}`}
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                {feature.details || "Detailed information coming soon..."}
-              </p>
-              {feature.image && (
-                <div className="relative w-full h-56 sm:h-72 rounded-lg overflow-hidden">
-                  <Image
-                    src={feature.image}
-                    alt={`Feature ${index + 1}`}
-                    fill
-                    className="object-cover rounded-lg"
-                  />
-                </div>
-              )}
-            </section>
-          ))}
+          {project.keyFeatures?.map((feature, index) => {
+            // Only render detailed section if details or image exist
+            if (!feature.details && !feature.image) return null;
 
-          {/* Technologies */}
+            return (
+              <section
+                key={index}
+                id={`feature-${index + 1}`}
+                className="mb-10 scroll-mt-24 border-t border-border pt-6"
+              >
+                {feature.title && (
+                  <h3 className="text-xl font-semibold mb-2">
+                    {feature.title}
+                  </h3>
+                )}
+
+                {feature.details && (
+                  <p className="text-muted-foreground mb-4">
+                    {feature.details}
+                  </p>
+                )}
+
+                {feature.image && (
+                  <div className="relative w-full h-56 sm:h-72 rounded-lg overflow-hidden">
+                    <Image
+                      src={feature.image}
+                      alt={`Feature ${index + 1}`}
+                      fill
+                      className="object-cover rounded-lg"
+                    />
+                  </div>
+                )}
+              </section>
+            );
+          })}
+
+          {/* Technologies Section */}
           {project.technologies?.length > 0 && (
             <section id="technologies" className="scroll-mt-24">
-              <h2 className="text-2xl font-semibold mb-4">Technologies Used</h2>
+              <h2 className="text-xl md:text-3xl font-semibold mb-4">
+                Technologies Used
+              </h2>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech) => (
                   <span
@@ -185,8 +192,6 @@ const Aprojects = () => {
               </div>
             </section>
           )}
-
-
         </div>
       </div>
     </section>
