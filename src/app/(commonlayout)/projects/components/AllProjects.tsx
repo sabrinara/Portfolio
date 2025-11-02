@@ -12,6 +12,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { useRouter } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import LoadingUI from "../../shared/Loading/LoadingUI";
@@ -23,6 +32,8 @@ const AllProjects = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedType, setSelectedType] = useState<string>("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   const router = useRouter();
 
@@ -61,6 +72,20 @@ const AllProjects = () => {
     });
   }, [projects, selectedCategory, selectedType]);
 
+  // ✅ Pagination logic
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedProjects = filteredProjects.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
   if (loading)
     return (
       <div>
@@ -78,11 +103,16 @@ const AllProjects = () => {
       {/* Filters */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6 mx-2">
         <div>
-          <label className="text-sm font-medium mr-2 text-text mb-2">Filter by Category</label>
+          <label className="text-sm font-medium mr-2 text-text mb-2">
+            Filter by Category
+          </label>
           <br />
           <select
             value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
+            onChange={(e) => {
+              setSelectedCategory(e.target.value);
+              setCurrentPage(1);
+            }}
             className="border text-xs bg-background text-text rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-hovertext"
           >
             {categories.map((cat) => (
@@ -94,12 +124,17 @@ const AllProjects = () => {
         </div>
 
         <div>
-          <label className="text-sm font-medium mr-2 text-text mb-2">Filter by Type</label>
-            <br />
+          <label className="text-sm font-medium mr-2 text-text mb-2">
+            Filter by Type
+          </label>
+          <br />
           <select
             value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
-           className="border text-xs bg-background text-text rounded px-2 py-2 focus:outline-none focus:ring-2 focus:ring-hovertext"
+            onChange={(e) => {
+              setSelectedType(e.target.value);
+              setCurrentPage(1);
+            }}
+            className="border text-xs bg-background text-text rounded px-2 py-2 focus:outline-none focus:ring-2 focus:ring-hovertext"
           >
             {types.map((t) => (
               <option key={t} value={t}>
@@ -116,7 +151,6 @@ const AllProjects = () => {
           <TableRow>
             <TableHead className="w-[120px]">Image</TableHead>
             <TableHead className="text-center">Title</TableHead>
-            {/* <TableHead className="text-center">Subtitle</TableHead> */}
             <TableHead className="text-center">Category</TableHead>
             <TableHead className="text-center">Technologies</TableHead>
             <TableHead className="text-center">Type</TableHead>
@@ -125,15 +159,19 @@ const AllProjects = () => {
         </TableHeader>
 
         <TableBody>
-          {filteredProjects.length > 0 ? (
-            filteredProjects.map((project) => (
+          {paginatedProjects.length > 0 ? (
+            paginatedProjects.map((project) => (
               <TableRow
                 key={project._id}
                 className="cursor-pointer hover:bg-muted/50 transition"
               >
                 <TableCell>
                   {project.imageArray && project.imageArray.length > 0 ? (
-                    <div className="relative w-[100px] h-[60px]"   onClick={() => router.push(`/projects/${project._id}`)} title="Click to View Details">
+                    <div
+                      className="relative w-[100px] h-[60px]"
+                      onClick={() => router.push(`/projects/${project._id}`)}
+                      title="Click to View Details"
+                    >
                       <Image
                         src={project.imageArray[0]}
                         alt={project.title}
@@ -148,10 +186,20 @@ const AllProjects = () => {
                   )}
                 </TableCell>
 
-                <TableCell className="font-semibold"  onClick={() => router.push(`/projects/${project._id}`)} title="Click to View Details">{project.title}</TableCell>
-                {/* <TableCell>{project.subTitle || "-"}</TableCell> */}
-                <TableCell className="text-center text-xs">{project.category}</TableCell>
-  <TableCell className="text-center text-xs">{project.type}</TableCell>
+                <TableCell
+                  className="font-semibold"
+                  onClick={() => router.push(`/projects/${project._id}`)}
+                  title="Click to View Details"
+                >
+                  {project.title}
+                </TableCell>
+
+                <TableCell className="text-center text-xs">
+                  {project.category}
+                </TableCell>
+                <TableCell className="text-center text-xs">
+                  {project.type}
+                </TableCell>
                 <TableCell>
                   {project.technologies && project.technologies.length > 0 ? (
                     <div className="grid md:grid-cols-4 gap-1 text-center">
@@ -169,17 +217,17 @@ const AllProjects = () => {
                   )}
                 </TableCell>
 
-              
-
                 <TableCell className="text-hovertext text-xs">
-                    {project.urls && project.urls.length > 0 && project.urls[0]?.website ? (
+                  {project.urls &&
+                  project.urls.length > 0 &&
+                  project.urls[0]?.website ? (
                     <Link
-                    href={project.urls[0]?.website || "#"}
+                      href={project.urls[0]?.website || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <div className="flex justify-center items-center bg-secondary/10 text-hovertext rounded-full p-2  text-center hover:bg-hovertext/10">
-                        Visit 
+                        Visit
                         <ArrowUpRight size={14} />
                       </div>
                     </Link>
@@ -191,13 +239,66 @@ const AllProjects = () => {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={7} className="text-center py-6 text-muted-foreground">
+              <TableCell
+                colSpan={7}
+                className="text-center py-6 text-muted-foreground"
+              >
                 No projects found for the selected filters.
               </TableCell>
             </TableRow>
           )}
         </TableBody>
       </Table>
+
+      {/* ✅ Pagination Section */}
+      {totalPages > 1 && (
+        <div className="mt-6 flex justify-center">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  className={
+                    currentPage === 1
+                      ? "pointer-events-none opacity-50"
+                      : "cursor-pointer"
+                  }
+                />
+              </PaginationItem>
+
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <PaginationItem key={page}>
+                    <PaginationLink
+                      onClick={() => handlePageChange(page)}
+                      isActive={page === currentPage}
+                    >
+                      {page}
+                    </PaginationLink>
+                  </PaginationItem>
+                )
+              )}
+
+              {totalPages > 5 && currentPage < totalPages - 2 && (
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
+              )}
+
+              <PaginationItem>
+                <PaginationNext
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className={
+                    currentPage === totalPages
+                      ? "pointer-events-none opacity-50"
+                      : "cursor-pointer"
+                  }
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+      )}
     </section>
   );
 };

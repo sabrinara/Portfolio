@@ -45,7 +45,7 @@ const Projects = () => {
   if (projects.length === 0)
     return <p className="text-muted-foreground mt-4 text-center">No featured projects found.</p>;
 
-  const displayedProjects = projects.slice(0, 3);
+  const displayedProjects = projects.slice(0, 4);
 
   return (
     <section
