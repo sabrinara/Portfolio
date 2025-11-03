@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { getExperiences } from "@/services/experience";
 import { IExperience } from "@/types/experience";
-import { CalendarDays, ArrowUpRight } from "lucide-react";
+import { CalendarDays, ArrowUpRight, Github } from "lucide-react";
 import LoadingUI from "../../shared/Loading/LoadingUI";
 import ExperienceProjects from "./ExperienceProjects"; // ✅ Import the new component
 import { Button } from "@/components/ui/button";
@@ -100,7 +100,8 @@ const AllExperiences = () => {
                   <h2 className="text-xl font-bold text-text">{exp.title}</h2>
                 )}
 
-                {/* Subtitle / Type */}
+               <div className="flex justify-between items-center mt-4 gap-4">
+                 {/* Subtitle / Type */}
                 {exp.url && (
                   <a
                     href={exp.url}
@@ -112,36 +113,50 @@ const AllExperiences = () => {
                     {exp.subTitle} <ArrowUpRight size={14} />
                   </a>
                 )}
+                 {exp.type === "company" && exp.resumeUrl && (
+                  <a
+                    href={exp.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-hovertext hover:text-primary transition-colors"
+                    title="View Github"
+                  >
+                    <Github size={20}/>
+                  </a>
+                )}
+               </div>
               </div>
 
               {/* About */}
               <p className="mt-3 text-base leading-relaxed text-muted-foreground">
                 {exp.about}
               </p>
-
-              {/* Technologies */}
-              {exp.technologies?.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-4">
-                 <h4 className="text-[14px] md:text-lg font-semibold text-text mb-2">
-                    Technologies-
-                  </h4>
-                  <div className="">
-                    {exp.technologies.map((tech, index) => (
-                      <span
-                        key={index}
-                        className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm mx-1"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+            
+                {/* Technologies */}
+                {exp.technologies?.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    <h4 className="text-[14px] md:text-lg font-semibold text-text mb-2">
+                      Technologies-
+                    </h4>
+                    <div className="">
+                      {exp.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm mx-1"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+           
+
 
               {/* Related Projects Section */}
               {exp.projects && exp.projects.length > 0 && (
                 <div className="mt-6">
-                      <h4 className="text-[14px] md:text-lg font-semibold text-text mb-2">Projects-</h4>
+                  <h4 className="text-[14px] md:text-lg font-semibold text-text mb-2">Projects-</h4>
                   <ExperienceProjects projects={exp.projects} />
                 </div>
               )}
