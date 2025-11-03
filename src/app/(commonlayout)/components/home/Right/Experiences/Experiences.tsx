@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { getExperiences } from "@/services/experience";
 import { IExperience } from "@/types/experience";
-import { CalendarDays, ArrowUpRight } from "lucide-react";
+import { CalendarDays, ArrowUpRight, Github } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import LoadingUI from "@/app/(commonlayout)/shared/Loading/LoadingUI";
@@ -31,12 +31,12 @@ const Experiences = () => {
     fetchExperiences();
   }, []);
 
-//  if (loading)
-//         return (
-//             <div>
-//                 <LoadingUI />
-//             </div>
-//         )
+  //  if (loading)
+  //         return (
+  //             <div>
+  //                 <LoadingUI />
+  //             </div>
+  //         )
   if (error)
     return <p className="text-red-500 mt-4 text-center">{error}</p>;
   if (!experiences.length)
@@ -75,9 +75,10 @@ const Experiences = () => {
             transition={{ duration: 0.6, delay: index * 0.1 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.02 }}
+            onClick={() => router.push("/experiences")}
           >
             {/* Date (Desktop View) */}
-            <div className="hidden md:flex items-center gap-2 text-muted-foreground/80 text-sm font-bold whitespace-nowrap md:mt-1">
+            <div className="hidden md:flex items-center gap-2 text-muted-foreground/80 text-sm font-bold whitespace-nowrap md:mt-1"  >
               <CalendarDays size={16} />
               <span>
                 {exp.startDate
@@ -131,24 +132,37 @@ const Experiences = () => {
                 {exp.about}
               </motion.p>
 
-              {/* Technologies */}
-              {exp.technologies?.length > 0 && (
-                <motion.div
-                  className="flex flex-wrap gap-2 mt-4"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                  {exp.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm transition-colors duration-200"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </motion.div>
-              )}
+              <div className="flex justify-between items-start mt-4">
+                {/* Technologies */}
+                {exp.technologies?.length > 0 && (
+                  <motion.div
+                    className="flex flex-wrap gap-2"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                  >
+                    {exp.technologies.map((tech, index) => (
+                      <span
+                        key={index}
+                        className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm transition-colors duration-200"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </motion.div>
+                )}
+                {exp.type === "company" && exp.resumeUrl && (
+                  <a
+                    href={exp.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-hovertext hover:text-primary transition-colors"
+                    title="View Github"
+                  >
+                    <Github />
+                  </a>
+                )}
+              </div>
 
               {/* Date (Mobile View) */}
               <div className="flex justify-end md:hidden items-center gap-2 text-muted-foreground text-sm font-bold whitespace-nowrap mt-4">
