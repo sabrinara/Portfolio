@@ -21,46 +21,6 @@ This is a personal portfolio project built using **Next.js**, **React**, **Tailw
 - **Rate Limiter** (for preventing spam/bots in the contact form)
 - **MongoDB** (for storing project and experience data)
 
-## 🔧 Installation and Setup
-
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/your-username/your-repository-name.git
-    cd your-repository-name
-    ```
-
-2. **Install dependencies** using **Bun**:
-    ```bash
-    bun install
-    ```
-
-3. **Create an `.env` file** in the root of the project and add the following variables (use your own credentials):
-    ```env
-    GMAIL_USER=your-email@gmail.com
-    GMAIL_PASS=your-app-password
-    SITE_NAME=YourSiteName
-    ```
-
-4. **Run the development server**:
-    ```bash
-    bun dev
-    ```
-
-5. Visit the website on `http://localhost:3000`.
-
-## 📝 How to Use
-
-1. **Add New Projects**:
-   - Projects are fetched from a backend (or can be manually added to MongoDB).
-   - Ensure each project contains relevant information like the title, category, description, and images.
-   
-2. **Experience Section**:
-   - You can link your experience to related projects using the `projects` array (array of project IDs).
-   - Add relevant details for each experience, including a certificate URL and the projects worked on.
-
-3. **Contact Form**:
-   - Ensure you have an SMTP provider configured in the `.env` file to send emails securely (e.g., Gmail with app password).
-   - You can add rate limiting and IP checks to reduce spam.
 
 ## 🔍 Features Overview
 
@@ -73,5 +33,21 @@ This is a personal portfolio project built using **Next.js**, **React**, **Tailw
 - Rate limiting and SMTP verification ensures legitimate submissions.
 
 ## 📂 File Structure
-
+```plaintext
+├── components/
+│ ├── ui/
+│ └── shared/
+├── pages/
+│ ├── api/
+│ ├── projects/
+│ └── experiences/
+├── services/
+│ └── projects.ts
+│ └── experience.ts
+├── styles/
+├── public/
+├── .env
+├── tsconfig.json
+└── README.md
+```
 
