@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Portfolio Project
 
-## Getting Started
+## 🚀 Project Description
 
-First, run the development server:
+This is a personal portfolio project built using **Next.js**, **React**, **Tailwind CSS**, **TypeScript**, and **Bun**. It showcases my work, including various projects and experiences, and includes features like a contact form, project filtering, and dynamic content rendering.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Key Features
+- **Project Portfolio**: Displaying a list of projects with detailed views.
+- **Experience Section**: Listing past work experiences with linked projects.
+- **Contact Form**: Allows users to contact me via a secure SMTP-powered form.
+- **Filterable Projects**: Filter projects by categories and types dynamically.
+- **Responsive**: The website is mobile-first, ensuring a seamless experience across devices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💻 Technologies Used
+- **Next.js** (for server-side rendering and routing)
+- **React** (for UI components)
+- **Tailwind CSS** (for styling)
+- **TypeScript** (for type safety)
+- **Bun** (for fast package management and builds)
+- **Nodemailer** (for sending contact emails)
+- **Rate Limiter** (for preventing spam/bots in the contact form)
+- **MongoDB** (for storing project and experience data)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔧 Installation and Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/your-username/your-repository-name.git
+    cd your-repository-name
+    ```
 
-## Learn More
+2. **Install dependencies** using **Bun**:
+    ```bash
+    bun install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Create an `.env` file** in the root of the project and add the following variables (use your own credentials):
+    ```env
+    GMAIL_USER=your-email@gmail.com
+    GMAIL_PASS=your-app-password
+    SITE_NAME=YourSiteName
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Run the development server**:
+    ```bash
+    bun dev
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Visit the website on `http://localhost:3000`.
 
-## Deploy on Vercel
+## 📝 How to Use
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Add New Projects**:
+   - Projects are fetched from a backend (or can be manually added to MongoDB).
+   - Ensure each project contains relevant information like the title, category, description, and images.
+   
+2. **Experience Section**:
+   - You can link your experience to related projects using the `projects` array (array of project IDs).
+   - Add relevant details for each experience, including a certificate URL and the projects worked on.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. **Contact Form**:
+   - Ensure you have an SMTP provider configured in the `.env` file to send emails securely (e.g., Gmail with app password).
+   - You can add rate limiting and IP checks to reduce spam.
+
+## 🔍 Features Overview
+
+### Filtering Projects by Category & Type
+- Use the filters dropdown at the top of the Projects section to filter by **Category** and **Type** of project.
+- Categories and Types are dynamically populated based on the projects in your database.
+
+### Contact Form (SMTP Integration)
+- The contact form allows users to reach out via a secured email system powered by **Nodemailer**.
+- Rate limiting and SMTP verification ensures legitimate submissions.
+
+## 📂 File Structure
+
+
