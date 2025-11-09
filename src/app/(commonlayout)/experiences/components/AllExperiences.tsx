@@ -61,14 +61,14 @@ const AllExperiences = () => {
         My <span className="text-hovertext">Experiences</span>
       </h1>
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-2 md:gap-8">
         {sortedExperiences.map((exp) => (
           <div
             key={exp._id}
-            className="flex flex-col gap-4 rounded-2xl py-6 md:p-10 hover:bg-card/20 transition-all duration-300 border"
+            className="flex flex-col gap-4 rounded-2xl py-6 md:p-10 hover:bg-card/20 transition-all duration-300 md:border"
           >
             {/* Date (Desktop) */}
-            <div className="hidden md:flex items-center gap-2 text-muted-foreground/80 text-sm font-bold whitespace-nowrap md:mt-1">
+            <div className="flex items-center gap-2 text-muted-foreground/80 text-sm font-bold whitespace-nowrap md:mt-1">
               <CalendarDays size={16} />
               <span>
                 {exp.startDate
@@ -133,23 +133,24 @@ const AllExperiences = () => {
               </p>
             
                 {/* Technologies */}
-                {exp.technologies?.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    <h4 className="text-[14px] md:text-lg font-semibold text-text mb-2">
-                      Technologies-
-                    </h4>
-                    <div className="">
-                      {exp.technologies.map((tech, index) => (
-                        <span
-                          key={index}
-                          className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-sm mx-1"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                     {/* Technologies */}
+              {exp.technologies?.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-2">
+                  <h4 className="text-sm sm:text-[14px] md:text-lg font-semibold text-text w-full">
+                    Technologies:
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {exp.technologies.map((tech, index) => (
+                      <span
+                        key={index}
+                        className="bg-secondary/10 text-hovertext hover:text-primary px-3 py-1 rounded-full text-xs sm:text-sm"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
-                )}
+                </div>
+              )}
            
 
 
@@ -162,20 +163,7 @@ const AllExperiences = () => {
               )}
 
 
-              {/* Date (Mobile) */}
-              <div className="flex md:hidden items-center gap-2 text-muted-foreground text-sm font-bold whitespace-nowrap mt-4">
-                <CalendarDays size={16} />
-                <span>
-                  {exp.startDate
-                    ? new Date(exp.startDate).toLocaleDateString()
-                    : "N/A"}{" "}
-                  –{" "}
-                  {exp.endDate &&
-                    exp.endDate.toLowerCase() !== "present"
-                    ? new Date(exp.endDate).toLocaleDateString()
-                    : "Present"}
-                </span>
-              </div>
+          
             </div>
           </div>
         ))}
