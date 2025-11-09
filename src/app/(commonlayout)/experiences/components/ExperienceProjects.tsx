@@ -11,22 +11,23 @@ interface ExperienceProjectsProps {
 
 const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => {
   if (!projects || projects.length === 0)
-    return <p className="text-muted-foreground">No projects found in this experience.</p>;
+    return <p className="text-muted-foreground text-center mt-4">No projects found in this experience.</p>;
 
   return (
-    <section className="mt-4">
-      {/* If there's more than one project, display them in a grid */}
+    <section className="mt-4 p-4 md:p-0">
       <div
         className={`${
-          projects.length > 1 ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" : "flex flex-col gap-6 justify-center items-center"
+          projects.length > 1
+            ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            : "flex flex-col gap-6 justify-center items-center"
         }`}
       >
-        {projects.map((project) => (
-          // If there's more than 1 project, use the first design
+        {projects.map((project) =>
           projects.length > 1 ? (
+            // Multi-project card design
             <div
-              key={project._id}  // Use project._id instead of projects._id
-              className="flex flex-col justify-between items-center rounded-xl bg-card/10 hover:bg-card/20 transition-all duration-300 overflow-hidden shadow-sm"
+              key={project._id}
+              className="flex flex-col justify-between items-center rounded-xl bg-card/10 hover:bg-card/20 transition-all duration-300 overflow-hidden shadow-sm w-full"
             >
               {/* Image */}
               {project.imageArray?.length > 0 && (
@@ -34,7 +35,7 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
                   href={project.urls?.[0]?.website || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block relative h-56 w-full"
+                  className="block relative w-full h-48 sm:h-56 md:h-64 lg:h-56"
                 >
                   <Image
                     src={project.imageArray[0]}
@@ -46,11 +47,9 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
               )}
 
               {/* Content */}
-              <div className="p-4 md:p-6 w-full">
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-lg md:text-xl font-semibold text-text">
-                    {project.title}
-                  </h3>
+              <div className="py-4 w-full">
+                <div className="flex justify-between items-start sm:items-center mb-2 flex-col sm:flex-row gap-2 sm:gap-0">
+                  <h3 className="text-lg sm:text-xl font-semibold text-text">{project.title}</h3>
                   {project.urls?.[0]?.website && (
                     <Link
                       href={project.urls[0].website}
@@ -63,9 +62,7 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
                   )}
                 </div>
 
-                <p className="text-muted-foreground text-sm line-clamp-6 mb-3">
-                  {project.description}
-                </p>
+                <p className="text-muted-foreground text-sm line-clamp-6 mb-3">{project.description}</p>
 
                 <div className="flex flex-wrap gap-2 mb-3">
                   {project.technologies?.slice(0, 6).map((tech, i) => (
@@ -82,7 +79,7 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
                   <div className="flex justify-end">
                     <Link
                       href={`/projects/${project._id}`}
-                      className="inline-block  px-4 py-2 text-xs md:text-[14px] rounded bg-secondary text-buttontext hover:bg-primary/20 transition-all "
+                      className="inline-block px-4 py-2 text-xs sm:text-[14px] rounded bg-secondary text-buttontext hover:bg-primary/20 transition-all"
                     >
                       View Details
                     </Link>
@@ -91,10 +88,10 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
               </div>
             </div>
           ) : (
-            // If there's only one project, use the second design
+            // Single project card design
             <div
-              key={project._id}  // Use project._id instead of projects._id
-              className="flex justify-between items-center rounded-xl bg-card/10 hover:bg-card/20 transition-all duration-300 overflow-hidden shadow-sm"
+              key={project._id}
+              className="flex flex-col sm:flex-row justify-between items-center rounded-xl bg-card/10 hover:bg-card/20 transition-all duration-300 overflow-hidden shadow-sm w-full"
             >
               {/* Image */}
               {project.imageArray?.length > 0 && (
@@ -102,7 +99,7 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
                   href={project.urls?.[0]?.website || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block relative h-74 w-full sm:w-1/2"
+                  className="block relative w-full sm:w-1/2 h-60 sm:h-64 md:h-72 lg:h-80"
                 >
                   <Image
                     src={project.imageArray[0]}
@@ -114,11 +111,9 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
               )}
 
               {/* Content */}
-              <div className="p-4 md:p-6 w-full sm:w-1/2">
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-lg md:text-xl font-semibold text-text">
-                    {project.title}
-                  </h3>
+              <div className="p-4 sm:p-6 w-full sm:w-1/2">
+                <div className="flex justify-between items-start sm:items-center mb-2 flex-col sm:flex-row gap-2 sm:gap-0">
+                  <h3 className="text-lg sm:text-xl font-semibold text-text">{project.title}</h3>
                   {project.urls?.[0]?.website && (
                     <Link
                       href={project.urls[0].website}
@@ -131,9 +126,7 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
                   )}
                 </div>
 
-                <p className="text-muted-foreground text-sm line-clamp-6 mb-3">
-                  {project.description}
-                </p>
+                <p className="text-muted-foreground text-sm line-clamp-6 mb-3">{project.description}</p>
 
                 <div className="flex flex-wrap gap-2 mb-3">
                   {project.technologies?.map((tech, i) => (
@@ -150,7 +143,7 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
                   <div className="flex justify-end">
                     <Link
                       href={`/projects/${project._id}`}
-                      className="inline-block  px-4 py-2 text-xs md:text-[14px] rounded bg-secondary text-buttontext hover:bg-primary/20 transition-all "
+                      className="inline-block px-4 py-2 text-xs sm:text-[14px] rounded bg-secondary text-buttontext hover:bg-primary/20 transition-all"
                     >
                       View Details
                     </Link>
@@ -159,7 +152,7 @@ const ExperienceProjects: React.FC<ExperienceProjectsProps> = ({ projects }) => 
               </div>
             </div>
           )
-        ))}
+        )}
       </div>
     </section>
   );
