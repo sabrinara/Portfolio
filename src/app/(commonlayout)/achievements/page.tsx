@@ -5,7 +5,7 @@ import ScrollContact from '../shared/Scroll/ScrollContact';
 
 const AllAchievementsPage = () => {
     return (
-         <div className='mx-auto bg-background text-primary P-4 md:p-6 rounded-lg min-h-screen md:w-[1120px]'>
+         <div className='mx-auto bg-background text-primary P-4 md:p-6 rounded-lg min-h-screen lg:w-[1024px]'>
            <AllAchievements/>
            <ScrollContact/>
            <ScrollToTheTop/>

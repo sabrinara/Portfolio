@@ -157,3 +157,14 @@
 html {
   scroll-behavior: smooth;
 }
+
+
+/* === MEDIA QUERIES === */
+
+/* For large screens and above (e.g., desktops) */
+@media (min-width: 1024px) {
+  .lg\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}

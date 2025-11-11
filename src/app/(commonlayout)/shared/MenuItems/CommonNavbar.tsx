@@ -21,7 +21,7 @@ const CommonNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-md bg-background/70 border-b border-border mx-auto px-2 pt-2 md:w-[1120px]">
+    <nav className="sticky top-0 z-50 backdrop-blur-md bg-background/70 border-b border-border mx-auto px-2 pt-2 lg:w-[1024px]">
       <div className="flex justify-between items-center px-4 md:px-0 py-3">
         {/* 🌤 Left side: Weather */}
      <Link href="/">

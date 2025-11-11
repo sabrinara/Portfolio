@@ -8,6 +8,7 @@ import {
   Snowflake,
   MapPin,
   Loader2,
+  CloudFog,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -98,28 +99,33 @@ export default function WeatherWidget() {
       case "Clear":
         return {
           icon: <Sun className="w-5 h-5" />,
-          message: "Sunny Day",
+          message: condition,
         };
       case "Rain":
       case "Drizzle":
         return {
           icon: <CloudRain className="w-5 h-5" />,
-          message: "Rainy Mood",
+          message: condition,
         };
       case "Snow":
         return {
           icon: <Snowflake className="w-5 h-5" />,
-          message: "Snowy Time",
+          message: condition,
         };
       case "Clouds":
         return {
           icon: <Cloud className="w-5 h-5" />,
-          message: "Cloudy Skies",
+          message: condition,
+        };
+      case "Haze":
+        return {
+          icon: <CloudFog className="w-5 h-5" />,
+          message: condition,
         };
       default:
         return {
           icon: <Cloud className="w-5 h-5" />,
-          message: "Unknown Weather",
+          message: condition,
         };
     }
   };

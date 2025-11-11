@@ -19,12 +19,12 @@ const HomeLayout = () => {
                 <ModeToggle />
             </div>
 
-            <div className="flex flex-col md:flex-row w-full justify-between gap-4 pt-20 md:pt-0 px-6 md:px-0">
-                <div className="w-full md:w-1/3 md:sticky md:top-[60px] md:h-[calc(80vh-60px)]">
+            <div className="flex flex-col md:flex-row w-full justify-between gap-2 pt-20 md:pt-0 px-6 md:px-0">
+                <div className="w-full md:w-2/5 md:sticky md:top-[60px] md:h-[calc(80vh-60px)]">
                     <LeftComponents />
                 </div>
 
-                <div className="w-full md:w-2/3 pt-4 md:pt-2">
+                <div className="w-full md:w-3/5 pt-4 md:pt-2">
                     <RightComponents />
                 </div>
             </div>

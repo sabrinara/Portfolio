@@ -54,7 +54,7 @@ const Aprojects = () => {
   console.log("Project data):", project);
 
   return (
-    <section className="md:w-[1120px] mx-auto md:py-10 md:gap-10 relative">
+    <section className="lg:w-[1024px] mx-auto md:py-10 md:gap-10 relative">
       {/* Top Summary */}
       <TechFeaDate
         date={project.date}

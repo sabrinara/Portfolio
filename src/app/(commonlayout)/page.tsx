@@ -25,7 +25,7 @@ const RootLayout = () => {
     const [isImageLoading, setIsImageLoading] = useState(true);
 
     return (
-        <div className="mx-auto bg-background text-primary md:p-6 rounded-lg min-h-screen md:w-[1120px]">
+        <div className="mx-auto bg-background text-primary md:p-6 rounded-lg min-h-screen lg:w-[1024px]">
             <HomeLayout />
             <ScrollContact />
             <ScrollToTheTop />
