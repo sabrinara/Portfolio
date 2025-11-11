@@ -37,21 +37,32 @@ const AllProjects = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        setLoading(true);
-        const data = await getProjects();
-        setProjects(data);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to fetch projects.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProjects();
-  }, []);
+useEffect(() => {
+  const fetchProjects = async () => {
+    try {
+      setLoading(true);
+      const data = await getProjects();
+
+      // ✅ Sort projects by `date` (most recent first)
+      const sortedData = data.sort((a, b) => {
+        const dateA = a.date ? new Date(a.date).getTime() : 0;
+        const dateB = b.date ? new Date(b.date).getTime() : 0;
+        return dateB - dateA; // descending order
+      });
+
+      setProjects(sortedData);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to fetch projects.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchProjects();
+}, []);
+
+
+
 
   const categories = useMemo(
     () => ["All", ...new Set(projects.map((p) => p.category))],
@@ -152,9 +163,11 @@ const AllProjects = () => {
             <TableHead className="w-[120px]">Image</TableHead>
             <TableHead className="text-center">Title</TableHead>
             <TableHead className="text-center">Category</TableHead>
-            <TableHead className="text-center">Technologies</TableHead>
+            
             <TableHead className="text-center">Type</TableHead>
+            <TableHead className="text-center">Build with</TableHead>
             <TableHead className="text-center">Website</TableHead>
+            <TableHead className="text-center">View</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -187,7 +200,7 @@ const AllProjects = () => {
                 </TableCell>
 
                 <TableCell
-                  className="font-semibold"
+                  className="font-semibold text-center"
                   onClick={() => router.push(`/projects/${project._id}`)}
                   title="Click to View Details"
                 >
@@ -202,11 +215,11 @@ const AllProjects = () => {
                 </TableCell>
                 <TableCell>
                   {project.technologies && project.technologies.length > 0 ? (
-                    <div className="grid md:grid-cols-4 gap-1 text-center">
-                      {project.technologies.map((tech) => (
+                    <div className="grid md:grid-cols-3 gap-1 text-center">
+                      {project.technologies.slice(0,3).map((tech) => (
                         <span
                           key={tech}
-                          className="bg-secondary/10 text-hovertext hover:text-primary px-2 py-[2px] rounded-full text-xs"
+                          className="bg-secondary/10 text-hovertext hover:text-primary px-1 py-2 rounded-full text-xs"
                         >
                           {tech}
                         </span>
@@ -217,7 +230,7 @@ const AllProjects = () => {
                   )}
                 </TableCell>
 
-                <TableCell className="text-hovertext text-xs">
+                <TableCell className=" text-xs">
                   {project.urls &&
                   project.urls.length > 0 &&
                   project.urls[0]?.website ? (
@@ -226,7 +239,7 @@ const AllProjects = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <div className="flex justify-center items-center bg-secondary/10 text-hovertext rounded-full p-2  text-center hover:bg-hovertext/10">
+                      <div className="flex justify-center items-center  text-center hover:bg-hovertext/10 hover:p-2 hover:rounded-full">
                         Visit
                         <ArrowUpRight size={14} />
                       </div>
@@ -234,6 +247,13 @@ const AllProjects = () => {
                   ) : (
                     <span className="text-secondary italic">No link</span>
                   )}
+                </TableCell>
+                    <TableCell
+                  className="text-center"
+                  onClick={() => router.push(`/projects/${project._id}`)}
+                  title="Click to View Details"
+                >
+                  Details
                 </TableCell>
               </TableRow>
             ))
