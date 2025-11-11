@@ -78,17 +78,22 @@ const Experiences = () => {
             onClick={() => router.push("/experiences")}
           >
             {/* Date (Desktop View) */}
-            <div className="hidden md:flex items-center gap-2 text-muted-foreground/80 text-sm font-bold whitespace-nowrap md:mt-1"  >
-              <CalendarDays size={16} />
-              <span>
-                {exp.startDate
-                  ? new Date(exp.startDate).toLocaleDateString()
-                  : "N/A"}{" "}
-                –{" "}
-                {exp.endDate && exp.endDate.toLowerCase() !== "present"
-                  ? new Date(exp.endDate).toLocaleDateString()
-                  : "Present"}
-              </span>
+            <div className="hidden md:flex  items-center gap-2 text-muted-foreground/80 text-sm font-bold whitespace-nowrap md:mt-1"  >
+              {/* <CalendarDays size={16} /> */}
+              <div className="flex flex-col">
+                <span>
+                  {exp.startDate
+                    ? new Date(exp.startDate).toLocaleDateString()
+                    : "N/A"}{" "}
+                  {" "}
+
+                </span>
+                <span>
+                  {exp.endDate && exp.endDate.toLowerCase() !== "present"
+                    ? new Date(exp.endDate).toLocaleDateString()
+                    : "Present"}
+                </span>
+              </div>
             </div>
 
             <div>
