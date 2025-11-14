@@ -29,13 +29,24 @@ This is a personal portfolio project built using **Next.js**, **React**, **Tailw
 - Categories and Types are dynamically populated based on the projects in your database.
 
 ### Contact Form (SMTP Integration)
-- The contact form allows users to reach out via a secured email system powered by **Nodemailer**.
-- Rate limiting and SMTP verification ensures legitimate submissions.
+- The contact form allows users to reach out via a secure email system powered by **Nodemailer**.
+- Rate limiting and SMTP verification ensure legitimate submissions.
 
 ## 📂 File Structure
 ```plaintext
-├── components/
-│ ├── ui/
+├── public
+├── src
+│ ├── app
+│ │   ├── (commonlayout)
+│ │
+│ 
+│ 
+│ ├── components/
+│ │    ├── ui
+│ ├── lib
+│ ├── services/
+│     └── projects.ts
+│     └── experience.ts
 │ └── shared/
 ├── pages/
 │ ├── api/
