@@ -34,30 +34,44 @@ This is a personal portfolio project built using **Next.js**, **React**, **Tailw
 
 ## 📂 File Structure
 ```plaintext
-├── public
-├── src
-│ ├── app
-│ │   ├── (commonlayout)
-│ │
-│ 
-│ 
-│ ├── components/
-│ │    ├── ui
-│ ├── lib
-│ ├── services/
-│     └── projects.ts
-│     └── experience.ts
-│ └── shared/
-├── pages/
-│ ├── api/
-│ ├── projects/
-│ └── experiences/
-├── services/
-│ └── projects.ts
-│ └── experience.ts
-├── styles/
+portfolio/
 ├── public/
+│   └── (images, icons, etc.)
+│
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── contact/route.ts       // API route
+│   │   ├── (commonlayout)/           // shared layouts
+│   │   ├── projects/                 // /projects page
+│   │   ├── experiences/              // /experiences page
+│   │   └── page.tsx                  // home page
+│   │
+│   ├── components/
+│   │   ├── ui/                       // shadcn/ui generated
+│   │   ├── shared/                   // buttons, section titles, reusable components
+│   │   └── layout/                   // Sidebar, Navbar, Footer
+│
+│   ├── lib/                          // config & utilities (e.g., constants)
+│
+│   ├── services/                     // API services (frontend)
+│   │   ├── projects.ts
+│   │   └── experience.ts
+│
+│   ├── types/
+│   │   ├── projects.ts
+│   │   └── experience.ts
+│
+│   └── utils/                        // helper functions
+│
+├── styles/
+│   ├── globals.css
+│   └── theme.css
+│
 ├── .env
+├── .gitignore
+├── next.config.ts
+├── package.json
 ├── tsconfig.json
 └── README.md
 ```
